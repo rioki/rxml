@@ -1,4 +1,8 @@
-/.obj
-/*.dll
-/*.a
-/*.exe
+.vs
+.obj
+*.a
+*.exe
+*.dll
+Win32
+x64
+*.dll

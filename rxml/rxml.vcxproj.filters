@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{264ac556-3851-47a5-94d7-bcfcc4aa3a5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API Header Files">
+      <UniqueIdentifier>{9466f511-e2fb-4ec0-9fbf-28a0cbc88a3e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Content.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Document.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Element.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlLexer.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlParser.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="location.hh">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="position.hh">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stack.hh">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XmlParser.hpp">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XmlLexer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\rxml\CData.h">
+      <Filter>API Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\rxml\Content.h">
+      <Filter>API Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\rxml\defines.h">
+      <Filter>API Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\rxml\Document.h">
+      <Filter>API Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\rxml\Element.h">
+      <Filter>API Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\rxml\Node.h">
+      <Filter>API Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\rxml\rxml.h">
+      <Filter>API Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\rxml\Text.h">
+      <Filter>API Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="XmlLexer.fpp">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="XmlParser.ypp">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

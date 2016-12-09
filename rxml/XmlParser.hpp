@@ -135,10 +135,12 @@ namespace rxml {
     {
     #line 33 "rxml/XmlParser.ypp" // lalr1.cc:377
     
-    std::string*   string;
-    rxml::Element* element;
+    std::string*                         string;
+    std::map<std::string, std::string>*  string_map;
+    std::pair<std::string, std::string>* string_pair;
+    rxml::Element*                       element;
 
-#line 142 "rxml/XmlParser.hpp" // lalr1.cc:377
+#line 144 "rxml/XmlParser.hpp" // lalr1.cc:377
     };
 #else
     typedef YYSTYPE semantic_type;
@@ -167,8 +169,8 @@ namespace rxml {
         LTS = 263,
         GT = 264,
         GTS = 265,
-        PI_OPEN = 266,
-        PI_CLOSE = 267,
+        PIO = 266,
+        PIE = 267,
         EQUAL = 268,
         IDENTIFIER = 269,
         STRING = 270
@@ -479,9 +481,9 @@ namespace rxml {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 11,     ///< Last index in yytable_.
-      yynnts_ = 10,  ///< Number of nonterminal symbols.
-      yyfinal_ = 8, ///< Termination state number.
+      yylast_ = 23,     ///< Last index in yytable_.
+      yynnts_ = 12,  ///< Number of nonterminal symbols.
+      yyfinal_ = 6, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
       yyntokens_ = 16  ///< Number of tokens.
@@ -498,7 +500,7 @@ namespace rxml {
 
 #line 4 "rxml/XmlParser.ypp" // lalr1.cc:377
 } // rxml
-#line 502 "rxml/XmlParser.hpp" // lalr1.cc:377
+#line 504 "rxml/XmlParser.hpp" // lalr1.cc:377
 
 
 

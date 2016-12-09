@@ -327,8 +327,8 @@ int yyFlexLexer::yylex()
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 11
-#define YY_END_OF_BUFFER 12
+#define YY_NUM_RULES 14
+#define YY_END_OF_BUFFER 15
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -336,11 +336,12 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static yyconst flex_int16_t yy_accept[24] =
+static yyconst flex_int16_t yy_accept[32] =
     {   0,
-        0,    0,   12,   10,    1,    2,    2,   10,   10,    5,
-        9,    7,    4,    1,    2,    0,    3,    0,    8,    6,
-        4,    3,    0
+        0,    0,   15,   13,    1,    2,    2,   13,   13,   13,
+        6,   10,    8,   13,    5,    1,    2,    0,    3,    0,
+        0,    4,    0,    9,    7,   11,   12,    5,    3,    4,
+        0
     } ;
 
 static yyconst YY_CHAR yy_ec[256] =
@@ -348,17 +349,17 @@ static yyconst YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
         1,    1,    4,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    2,    1,    5,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    6,    6,    7,    6,    6,    6,
-        6,    6,    6,    6,    6,    6,    6,    1,    1,    8,
-        9,   10,    1,    1,   11,   11,   11,   11,   11,   11,
-       11,   11,   11,   11,   11,   11,   11,   11,   11,   11,
-       11,   11,   11,   11,   11,   11,   11,   11,   11,   11,
-        1,   12,    1,    1,   11,    1,   11,   11,   11,   11,
+        1,    2,    1,    5,    1,    1,    1,    1,    6,    1,
+        1,    1,    1,    1,    7,    7,    8,    7,    7,    7,
+        7,    7,    7,    7,    7,    7,    7,    1,    1,    9,
+       10,   11,   12,    1,   13,   13,   13,   13,   13,   13,
+       13,   13,   13,   13,   13,   13,   13,   13,   13,   13,
+       13,   13,   13,   13,   13,   13,   13,   13,   13,   13,
+        1,   14,    1,    1,   13,    1,   13,   13,   13,   13,
 
-       11,   11,   11,   11,   11,   11,   11,   11,   11,   11,
-       11,   11,   11,   11,   11,   11,   11,   11,   11,   11,
-       11,   11,    1,    1,    1,    1,    1,    1,    1,    1,
+       13,   13,   13,   13,   13,   13,   13,   13,   13,   13,
+       13,   13,   13,   13,   13,   13,   13,   13,   13,   13,
+       13,   13,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -375,42 +376,46 @@ static yyconst YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static yyconst YY_CHAR yy_meta[13] =
+static yyconst YY_CHAR yy_meta[15] =
     {   0,
-        1,    1,    2,    2,    1,    3,    1,    1,    1,    1,
-        3,    1
+        1,    1,    2,    2,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1
     } ;
 
-static yyconst flex_uint16_t yy_base[26] =
+static yyconst flex_uint16_t yy_base[34] =
     {   0,
-        0,    0,   23,   32,   20,   32,   16,    8,    8,   10,
-       32,   32,    0,   14,   32,   16,   32,   10,   32,   32,
-        0,    0,   32,   28,   11
+        0,    0,   44,   45,   41,   45,   39,   10,   11,   29,
+        8,   45,   45,   28,   14,   36,   45,   14,   45,   17,
+       12,   45,   23,   45,   45,   45,   45,   23,   18,   27,
+       45,   34,   33
     } ;
 
-static yyconst flex_int16_t yy_def[26] =
+static yyconst flex_int16_t yy_def[34] =
     {   0,
-       23,    1,   23,   23,   23,   23,   23,   24,   23,   23,
-       23,   23,   25,   23,   23,   24,   23,   16,   23,   23,
-       25,   16,    0,   23,   23
+       31,    1,   31,   31,   31,   31,   31,   32,   33,   31,
+       31,   31,   31,   31,   31,   31,   31,   32,   31,   32,
+       33,   31,   33,   31,   31,   31,   31,   31,   32,   33,
+        0,   31,   31
     } ;
 
-static yyconst flex_uint16_t yy_nxt[45] =
+static yyconst flex_uint16_t yy_nxt[60] =
     {   0,
-        4,    5,    6,    7,    8,    4,    9,   10,   11,   12,
-       13,    4,   17,   21,   22,   14,   20,   19,   15,   18,
-       17,   14,   23,   23,   23,   23,   23,   18,   16,   23,
-       16,    3,   23,   23,   23,   23,   23,   23,   23,   23,
-       23,   23,   23,   23
+        4,    5,    6,    7,    8,    9,    4,   10,   11,   12,
+       13,   14,   15,    4,   19,   25,   22,   22,   19,   26,
+       28,   29,   19,   20,   23,   23,   28,   20,   30,   28,
+       20,   20,   22,   21,   18,   28,   23,   16,   27,   24,
+       23,   17,   16,   31,    3,   31,   31,   31,   31,   31,
+       31,   31,   31,   31,   31,   31,   31,   31,   31
     } ;
 
-static yyconst flex_int16_t yy_chk[45] =
+static yyconst flex_int16_t yy_chk[60] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    8,   25,   18,   14,   10,    9,    7,    8,
-       16,    5,    3,    0,    0,    0,    0,   16,   24,    0,
-       24,   23,   23,   23,   23,   23,   23,   23,   23,   23,
-       23,   23,   23,   23
+        1,    1,    1,    1,    8,   11,    9,   21,   18,   11,
+       15,   20,   29,    8,    9,   21,   15,   18,   23,   28,
+       20,   29,   30,   33,   32,   28,   23,   16,   14,   10,
+       30,    7,    5,    3,   31,   31,   31,   31,   31,   31,
+       31,   31,   31,   31,   31,   31,   31,   31,   31
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -435,7 +440,7 @@ static yyconst flex_int16_t yy_chk[45] =
 
 std::string unescape(const char* str);
 
-#line 439 "rxml/XmlLexer.cpp"
+#line 444 "rxml/XmlLexer.cpp"
 
 #define INITIAL 0
 
@@ -567,7 +572,7 @@ YY_DECL
 		}
 
 	{
-#line 27 "rxml/XmlLexer.fpp"
+#line 28 "rxml/XmlLexer.fpp"
 
 
 
@@ -576,7 +581,7 @@ yylloc->step();
 
 
 
-#line 580 "rxml/XmlLexer.cpp"
+#line 585 "rxml/XmlLexer.cpp"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -603,13 +608,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 24 )
+				if ( yy_current_state >= 32 )
 					yy_c = yy_meta[(unsigned int) yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (flex_int16_t) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 32 );
+		while ( yy_base[yy_current_state] != 45 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -635,26 +640,26 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 35 "rxml/XmlLexer.fpp"
+#line 36 "rxml/XmlLexer.fpp"
 {                        
-                        //yylval->node = new rxml::Text(YYText());
+                        yylval->string = new std::string(YYText());
                         return token::WS;
                     }
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 42 "rxml/XmlLexer.fpp"
+#line 43 "rxml/XmlLexer.fpp"
 {
                         yylloc->lines(1); 
                         yylloc->step();
-                        //yylval->node = new rxml::Text(YYText());
+                        yylval->string = new std::string(YYText());
                         return token::NL;
                     }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 49 "rxml/XmlLexer.fpp"
+#line 50 "rxml/XmlLexer.fpp"
 {
                         yylval->string = new std::string(YYText());
                         return token::STRING;
@@ -662,51 +667,69 @@ YY_RULE_SETUP
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 54 "rxml/XmlLexer.fpp"
+#line 55 "rxml/XmlLexer.fpp"
+{
+                        yylval->string = new std::string(YYText());
+                        return token::STRING;
+                    }
+	YY_BREAK
+case 5:
+YY_RULE_SETUP
+#line 60 "rxml/XmlLexer.fpp"
 {
                         yylval->string = new std::string(YYText());
                         return token::IDENTIFIER;                        
                     }
 	YY_BREAK
-case 5:
-YY_RULE_SETUP
-#line 59 "rxml/XmlLexer.fpp"
-return token::LT;
-	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 60 "rxml/XmlLexer.fpp"
-return token::LTS;
+#line 65 "rxml/XmlLexer.fpp"
+return token::LT;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 61 "rxml/XmlLexer.fpp"
-return token::GT;
+#line 66 "rxml/XmlLexer.fpp"
+return token::LTS;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 62 "rxml/XmlLexer.fpp"
-return token::GTS;
+#line 67 "rxml/XmlLexer.fpp"
+return token::GT;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 63 "rxml/XmlLexer.fpp"
-return token::EQUAL;
+#line 68 "rxml/XmlLexer.fpp"
+return token::GTS;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 65 "rxml/XmlLexer.fpp"
+#line 69 "rxml/XmlLexer.fpp"
+return token::EQUAL;
+	YY_BREAK
+case 11:
+YY_RULE_SETUP
+#line 70 "rxml/XmlLexer.fpp"
+return token::PIO;
+	YY_BREAK
+case 12:
+YY_RULE_SETUP
+#line 71 "rxml/XmlLexer.fpp"
+return token::PIE;
+	YY_BREAK
+case 13:
+YY_RULE_SETUP
+#line 73 "rxml/XmlLexer.fpp"
 {
                         error << *yylloc->begin.filename << "(" << yylloc->begin.line << "): Unexpected " << YYText() << std::endl;
                         return token::ERROR;
                     }
 	YY_BREAK
-case 11:
+case 14:
 YY_RULE_SETUP
-#line 71 "rxml/XmlLexer.fpp"
+#line 79 "rxml/XmlLexer.fpp"
 ECHO;
 	YY_BREAK
-#line 710 "rxml/XmlLexer.cpp"
+#line 733 "rxml/XmlLexer.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1119,7 +1142,7 @@ int yyFlexLexer::yy_get_next_buffer()
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 24 )
+			if ( yy_current_state >= 32 )
 				yy_c = yy_meta[(unsigned int) yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + (flex_int16_t) yy_c];
@@ -1147,11 +1170,11 @@ int yyFlexLexer::yy_get_next_buffer()
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 24 )
+		if ( yy_current_state >= 32 )
 			yy_c = yy_meta[(unsigned int) yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + (flex_int16_t) yy_c];
-	yy_is_jam = (yy_current_state == 23);
+	yy_is_jam = (yy_current_state == 31);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1661,7 +1684,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 71 "rxml/XmlLexer.fpp"
+#line 79 "rxml/XmlLexer.fpp"
 
 
 

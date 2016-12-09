@@ -42,4 +42,21 @@ SUITE(document)
         auto root = doc.get_root_element();                 
         CHECK_EQUAL("document", root->get_name());
     }
+
+    TEST(just_root_node_with_proessing_instruction)
+    {
+        rxml::Document doc;
+        
+        std::string xml = 
+          "<?xml version=\"1.0\"?>"
+          "<document />";
+        
+        std::stringstream buff(xml);
+        buff >> doc;
+        
+        CHECK(doc.has_root_element());
+        
+        auto root = doc.get_root_element();                 
+        CHECK_EQUAL("document", root->get_name());
+    }    
 }

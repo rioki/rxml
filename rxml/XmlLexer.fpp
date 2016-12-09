@@ -20,7 +20,8 @@ std::string unescape(const char* str);
 
 %}
 
-string          \"([^\"\n\r]+|\\\")*\"
+string1         \"([^\"\n\r]+|\\\")*\"
+string2         \'([^\'\n\r]+|\\\')*\'
 number          [-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?
 identifier      [a-zA-Z_][a-zA-Z0-9_\-\.]*
 
@@ -33,7 +34,7 @@ yylloc->step();
 
 
 [ \t]+              {                        
-                        //yylval->node = new rxml::Text(YYText());
+                        yylval->string = new std::string(YYText());
                         return token::WS;
                     }
 
@@ -42,11 +43,16 @@ yylloc->step();
 (\n)|(\r\n)|(\r)    {
                         yylloc->lines(1); 
                         yylloc->step();
-                        //yylval->node = new rxml::Text(YYText());
+                        yylval->string = new std::string(YYText());
                         return token::NL;
                     }
 
-{string}            {
+{string1}           {
+                        yylval->string = new std::string(YYText());
+                        return token::STRING;
+                    }
+
+{string2}           {
                         yylval->string = new std::string(YYText());
                         return token::STRING;
                     }
@@ -61,6 +67,8 @@ yylloc->step();
 ">"                 return token::GT;
 "/>"                return token::GTS;
 "="                 return token::EQUAL;
+"<?"                return token::PIO;
+"?>"                return token::PIE;
                     
 .                   {
                         error << *yylloc->begin.filename << "(" << yylloc->begin.line << "): Unexpected " << YYText() << std::endl;
