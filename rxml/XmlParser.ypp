@@ -1,0 +1,141 @@
+
+%skeleton "lalr1.cc"
+%defines
+%define api.namespace {rxml}
+
+%locations
+%error-verbose
+/* %debug */
+
+%code requires 
+{
+
+class XmlLexer;
+
+#include "rxml.h"
+}
+
+%parse-param {XmlLexer& lex}
+%parse-param {Document& doc}
+%parse-param {std::ostream& err}
+%parse-param {std::string filename}
+%lex-param   {XmlLexer& lex}
+
+%initial-action
+{
+    // Initialize the initial location.
+    @$.begin.line = @$.end.line = 1;
+    @$.begin.filename = @$.end.filename = &filename;
+};
+
+// Symbols.
+%union
+{    
+    std::string*   string;
+    rxml::Element* element;
+}
+
+%token              END 0           "end of file"
+%token              ERROR           "lexing error"
+
+%token <string>     WS              "white space"
+%token <string>     NL              "new line"
+%token <string>     COMMENT         "comment"
+%token              LT              "<"
+%token              LTS             "</"
+%token              GT              ">"
+%token              GTS             "/>"
+%token              PI_OPEN         "<?"
+%token              PI_CLOSE        "?>"
+%token              EQUAL           "="
+%token <string>     IDENTIFIER      "identifier"
+%token <string>     STRING          "string"
+
+%type <string>      name etag
+%type <element>     stag emptytag element
+
+%destructor { delete $$; } <string>
+%destructor { delete $$; } <element>
+
+%{
+int yylex(rxml::parser::semantic_type* yylval, rxml::parser::location_type* yylloc, XmlLexer& lex);
+
+#include "XmlLexer.h"
+#include <memory>
+
+template <typename Type>
+std::shared_ptr<Type> wrap(Type* type)
+{
+    return std::shared_ptr<Type>(type);
+}
+%}
+
+%%
+
+document:
+  element {
+    doc.set_root_element(wrap($1));
+  };
+
+element:
+  stag content etag {
+    if ($1->get_name() != *$3)
+    {
+        error(@1, "Tag does not match.");
+        return -1;
+    }
+    
+    $$ = $1;
+    // atach content
+    
+  } |
+  emptytag {
+    $$ = $1;
+  };
+  
+emptytag:
+  LT name s attributes s GTS {
+    $$ = new Element(*$2);
+    delete $2;
+  };
+  
+stag:
+  LT name s attributes s GT {
+    $$ = new Element(*$2);
+    delete $2;
+  };
+  
+etag:
+  LTS name s GT {
+    $$ = $2;
+  };
+  
+attributes:
+  /* tbd */;
+  
+content:
+  /* tbd */;
+  
+name:
+  IDENTIFIER {
+    $$ = $1;
+  };  
+  
+s:
+  WS | NL | /* nothing */;
+  
+%%
+
+#include <iostream>
+
+#include "XmlLexer.h"
+
+void rxml::parser::error(const location_type& l, const std::string& m)
+{    
+    err << *l.begin.filename << "(" << l.begin.line << "): " << m << std::endl;
+}
+
+int yylex(rxml::parser::semantic_type* yylval, rxml::parser::location_type* yylloc, XmlLexer& lex)
+{
+    return lex.lex(yylval, yylloc);
+}
