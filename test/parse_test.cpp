@@ -58,5 +58,21 @@ SUITE(document)
         
         auto root = doc.get_root_element();                 
         CHECK_EQUAL("document", root->get_name());
-    }    
+    } 
+    
+    TEST(simple_message)   
+    {
+        rxml::Document doc;
+        
+        std::string xml = 
+          "<?xml version=\"1.0\"?>"
+          "<message>\n"
+          "  <from>rioki</from>\n"
+          "  <to>World</to>\n"
+          "  <body>Yo I reinvented the wheel.</body>\n"
+          "</message>\n";
+        
+        std::stringstream buff(xml);
+        buff >> doc;
+    }
 }

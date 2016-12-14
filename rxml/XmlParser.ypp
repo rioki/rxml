@@ -50,8 +50,10 @@ class XmlLexer;
 %token              PIO             "<?"
 %token              PIE             "?>"
 %token              EQUAL           "="
+%token <string>     CHARS           "character data"
 %token <string>     IDENTIFIER      "identifier"
 %token <string>     STRING          "string"
+%token <string>     CDATA           "cdata section"
 
 %type <string>      etag
 %type <element>     stag emptytag element
@@ -147,8 +149,25 @@ attribute:
   };
 
 content:
-  /* tbd */; 
+    content nodes |
+    /* nothing */;
+
+nodes:
+  text | 
+  element | 
+  pi |
+  cdata |
+  comment; 
   
+text: 
+  WS | NL | CHARS;
+
+cdata:
+  CDATA;
+
+comment:
+  COMMENT;
+
 s:
   WS | NL | /* nothing */;
   

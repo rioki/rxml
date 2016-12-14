@@ -24,6 +24,8 @@ string1         \"([^\"\n\r]+|\\\")*\"
 string2         \'([^\'\n\r]+|\\\')*\'
 number          [-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?
 identifier      [a-zA-Z_][a-zA-Z0-9_\-\.]*
+cdata           <\!\[CDATA\[^(\]\]>)\]\]> 
+comment         <\!--^(-->)-->
 
 %%
 
@@ -61,6 +63,18 @@ yylloc->step();
                         yylval->string = new std::string(YYText());
                         return token::IDENTIFIER;                        
                     }
+
+{cdata}             {
+                        // TODO count lines
+                        yylval->string = new std::string(YYText());
+                        return token::CDATA;                        
+                    }
+
+{comment}           {
+                        // TODO count lines
+                        yylval->string = new std::string(YYText());
+                        return token::COMMENT;                        
+                    }
                     
 "<"                 return token::LT;
 "</"                return token::LTS;
@@ -70,9 +84,9 @@ yylloc->step();
 "<?"                return token::PIO;
 "?>"                return token::PIE;
                     
-.                   {
-                        error << *yylloc->begin.filename << "(" << yylloc->begin.line << "): Unexpected " << YYText() << std::endl;
-                        return token::ERROR;
+.+                  {
+                        yylval->string = new std::string(YYText());
+                        return token::CHARS;
                     }
 
 

@@ -172,8 +172,10 @@ namespace rxml {
         PIO = 266,
         PIE = 267,
         EQUAL = 268,
-        IDENTIFIER = 269,
-        STRING = 270
+        CHARS = 269,
+        IDENTIFIER = 270,
+        STRING = 271,
+        CDATA = 272
       };
     };
 
@@ -361,7 +363,7 @@ namespace rxml {
   // number is the opposite.  If YYTABLE_NINF, syntax error.
   static const unsigned char yytable_[];
 
-  static const unsigned char yycheck_[];
+  static const signed char yycheck_[];
 
   // YYSTOS[STATE-NUM] -- The (internal number of the) accessing
   // symbol of state STATE-NUM.
@@ -481,12 +483,12 @@ namespace rxml {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 23,     ///< Last index in yytable_.
-      yynnts_ = 12,  ///< Number of nonterminal symbols.
+      yylast_ = 33,     ///< Last index in yytable_.
+      yynnts_ = 16,  ///< Number of nonterminal symbols.
       yyfinal_ = 6, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
-      yyntokens_ = 16  ///< Number of tokens.
+      yyntokens_ = 18  ///< Number of tokens.
     };
 
 
@@ -500,7 +502,7 @@ namespace rxml {
 
 #line 4 "rxml/XmlParser.ypp" // lalr1.cc:377
 } // rxml
-#line 504 "rxml/XmlParser.hpp" // lalr1.cc:377
+#line 506 "rxml/XmlParser.hpp" // lalr1.cc:377
 
 
 
