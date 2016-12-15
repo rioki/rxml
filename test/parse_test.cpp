@@ -74,5 +74,12 @@ SUITE(document)
         
         std::stringstream buff(xml);
         buff >> doc;
+        
+        auto xmessage = doc.get_root_element();                 
+        CHECK_EQUAL("message", xmessage->get_name());
+        
+        auto xfrom = xmessage->find_element("from");
+        CHECK((bool)xfrom);
+        
     }
 }

@@ -84,7 +84,7 @@ yylloc->step();
 "<?"                return token::PIO;
 "?>"                return token::PIE;
                     
-.+                  {
+.                   {
                         yylval->string = new std::string(YYText());
                         return token::CHARS;
                     }

@@ -81,7 +81,7 @@ std::shared_ptr<Type> wrap(Type* type)
 %%
 
 document:
-  prolog element {
+  prolog element misc {
     doc.set_root_element(wrap($2));
   };
 
@@ -110,6 +110,10 @@ element:
   emptytag {
     $$ = $1;
   };
+  
+misc: 
+  s |
+  pi;
   
 emptytag:
   "<" IDENTIFIER s attributes s "/>" {
@@ -160,7 +164,7 @@ nodes:
   comment; 
   
 text: 
-  WS | NL | CHARS;
+  WS | NL | CHARS | IDENTIFIER | STRING;
 
 cdata:
   CDATA;

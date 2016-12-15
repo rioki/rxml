@@ -117,6 +117,8 @@ namespace rxml
          **/
         std::vector<std::shared_ptr<Node>> get_children() const;
         
+        std::shared_ptr<Element> find_element(const std::string& name);
+        
         virtual void write(std::ostream& os) const override;
         
     private:
