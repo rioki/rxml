@@ -39,7 +39,8 @@ SUITE(document)
         
         CHECK(doc.has_root_element());
         
-        auto root = doc.get_root_element();                 
+        auto root = doc.get_root_element();  
+        CHECK((bool)root);
         CHECK_EQUAL("document", root->get_name());
     }
 
@@ -48,7 +49,7 @@ SUITE(document)
         rxml::Document doc;
         
         std::string xml = 
-          "<?xml version=\"1.0\"?>"
+          "<?xml version=\"1.0\"?>\n"
           "<document />";
         
         std::stringstream buff(xml);
@@ -56,7 +57,8 @@ SUITE(document)
         
         CHECK(doc.has_root_element());
         
-        auto root = doc.get_root_element();                 
+        auto root = doc.get_root_element();  
+        CHECK((bool)root);               
         CHECK_EQUAL("document", root->get_name());
     } 
     
@@ -65,7 +67,7 @@ SUITE(document)
         rxml::Document doc;
         
         std::string xml = 
-          "<?xml version=\"1.0\"?>"
+          "<?xml version=\"1.0\"?>\n"
           "<message>\n"
           "  <from>rioki</from>\n"
           "  <to>World</to>\n"
@@ -74,5 +76,27 @@ SUITE(document)
         
         std::stringstream buff(xml);
         buff >> doc;
+
+        auto xmessage = doc.get_root_element();  
+        CHECK((bool)xmessage);               
+        CHECK_EQUAL("message", xmessage->get_name());
+
+        auto xfrom = xmessage->find_element("from");
+        CHECK((bool)xfrom);
+        CHECK_EQUAL("from", xfrom->get_name());
+        CHECK_EQUAL("rioki", xfrom->get_text());
+
+        auto xto = xmessage->find_element("to");
+        CHECK((bool)xfrom);
+        CHECK_EQUAL("to", xto->get_name());
+        CHECK_EQUAL("World", xto->get_text());
+
+        auto xbody = xmessage->find_element("body");
+        CHECK((bool)xbody);
+        CHECK_EQUAL("body", xbody->get_name());
+        CHECK_EQUAL("Yo I reinvented the wheel.", xbody->get_text());
+
+        auto children = xmessage->get_children();
+        CHECK_EQUAL(7, children.size());
     }
 }

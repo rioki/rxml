@@ -46,7 +46,7 @@
 #include "XmlParser.hpp"
 
 // User implementation prologue.
-#line 68 "rxml/XmlParser.ypp" // lalr1.cc:412
+#line 67 "rxml/XmlParser.ypp" // lalr1.cc:412
 
 int yylex(rxml::parser::semantic_type* yylval, rxml::parser::location_type* yylloc, XmlLexer& lex);
 
@@ -186,14 +186,14 @@ namespace rxml {
 
 
   /// Build a parser object.
-  parser::parser (XmlLexer& lex_yyarg, Document& doc_yyarg, std::ostream& err_yyarg, std::string filename_yyarg)
+  parser::parser (XmlLexer& lex_yyarg, SaxParser& sax_yyarg, std::ostream& err_yyarg, std::string filename_yyarg)
     :
 #if YYDEBUG
       yydebug_ (false),
       yycdebug_ (&std::cerr),
 #endif
       lex (lex_yyarg),
-      doc (doc_yyarg),
+      sax (sax_yyarg),
       err (err_yyarg),
       filename (filename_yyarg)
   {}
@@ -425,7 +425,7 @@ namespace rxml {
 #line 426 "rxml/XmlParser.cpp" // lalr1.cc:614
         break;
 
-      case 15: // "identifier"
+      case 15: // "name"
 
 #line 63 "rxml/XmlParser.ypp" // lalr1.cc:614
         { delete (yysym.value.string); }
@@ -446,46 +446,18 @@ namespace rxml {
 #line 447 "rxml/XmlParser.cpp" // lalr1.cc:614
         break;
 
-      case 22: // element
-
-#line 66 "rxml/XmlParser.ypp" // lalr1.cc:614
-        { delete (yysym.value.element); }
-#line 454 "rxml/XmlParser.cpp" // lalr1.cc:614
-        break;
-
-      case 23: // emptytag
-
-#line 66 "rxml/XmlParser.ypp" // lalr1.cc:614
-        { delete (yysym.value.element); }
-#line 461 "rxml/XmlParser.cpp" // lalr1.cc:614
-        break;
-
-      case 24: // stag
-
-#line 66 "rxml/XmlParser.ypp" // lalr1.cc:614
-        { delete (yysym.value.element); }
-#line 468 "rxml/XmlParser.cpp" // lalr1.cc:614
-        break;
-
-      case 25: // etag
-
-#line 63 "rxml/XmlParser.ypp" // lalr1.cc:614
-        { delete (yysym.value.string); }
-#line 475 "rxml/XmlParser.cpp" // lalr1.cc:614
-        break;
-
-      case 26: // attributes
+      case 27: // attributes
 
 #line 64 "rxml/XmlParser.ypp" // lalr1.cc:614
         { delete (yysym.value.string_map); }
-#line 482 "rxml/XmlParser.cpp" // lalr1.cc:614
+#line 454 "rxml/XmlParser.cpp" // lalr1.cc:614
         break;
 
-      case 27: // attribute
+      case 28: // attribute
 
 #line 65 "rxml/XmlParser.ypp" // lalr1.cc:614
         { delete (yysym.value.string_pair); }
-#line 489 "rxml/XmlParser.cpp" // lalr1.cc:614
+#line 461 "rxml/XmlParser.cpp" // lalr1.cc:614
         break;
 
 
@@ -617,14 +589,14 @@ namespace rxml {
 
 
     // User initialization code.
-    #line 25 "rxml/XmlParser.ypp" // lalr1.cc:741
+    #line 28 "rxml/XmlParser.ypp" // lalr1.cc:741
 {
     // Initialize the initial location.
     yyla.location.begin.line = yyla.location.end.line = 1;
     yyla.location.begin.filename = yyla.location.end.filename = &filename;
 }
 
-#line 628 "rxml/XmlParser.cpp" // lalr1.cc:741
+#line 600 "rxml/XmlParser.cpp" // lalr1.cc:741
 
     /* Initialize the stack.  The initial state will be set in
        yynewstate, since the latter expects the semantical and the
@@ -731,107 +703,125 @@ namespace rxml {
         {
           switch (yyn)
             {
-  case 2:
-#line 84 "rxml/XmlParser.ypp" // lalr1.cc:859
-    {
-    doc.set_root_element(wrap((yystack_[0].value.element)));
-  }
-#line 740 "rxml/XmlParser.cpp" // lalr1.cc:859
-    break;
-
-  case 5:
+  case 9:
 #line 92 "rxml/XmlParser.ypp" // lalr1.cc:859
     {
     // TODO     
     delete (yystack_[4].value.string);
     delete (yystack_[2].value.string_map);
   }
-#line 750 "rxml/XmlParser.cpp" // lalr1.cc:859
+#line 714 "rxml/XmlParser.cpp" // lalr1.cc:859
     break;
 
-  case 6:
-#line 99 "rxml/XmlParser.ypp" // lalr1.cc:859
+  case 12:
+#line 102 "rxml/XmlParser.ypp" // lalr1.cc:859
     {
-    if ((yystack_[2].value.element)->get_name() != *(yystack_[0].value.string))
+    if (sax.start_element_cb)
     {
-        error(yystack_[2].location, "Tag does not match.");
-        return -1;
+        sax.start_element_cb(*(yystack_[4].value.string), *(yystack_[2].value.string_map));
     }
-    
-    (yylhs.value.element) = (yystack_[2].value.element);
-    // atach content
-    
-  }
-#line 766 "rxml/XmlParser.cpp" // lalr1.cc:859
-    break;
-
-  case 7:
-#line 110 "rxml/XmlParser.ypp" // lalr1.cc:859
+    if (sax.end_element_cb)
     {
-    (yylhs.value.element) = (yystack_[0].value.element);
-  }
-#line 774 "rxml/XmlParser.cpp" // lalr1.cc:859
-    break;
-
-  case 8:
-#line 115 "rxml/XmlParser.ypp" // lalr1.cc:859
-    {
-    (yylhs.value.element) = new Element(*(yystack_[4].value.string));
+        sax.end_element_cb(*(yystack_[4].value.string));
+    }
     delete (yystack_[4].value.string);
     delete (yystack_[2].value.string_map);
   }
-#line 784 "rxml/XmlParser.cpp" // lalr1.cc:859
+#line 731 "rxml/XmlParser.cpp" // lalr1.cc:859
     break;
 
-  case 9:
-#line 122 "rxml/XmlParser.ypp" // lalr1.cc:859
+  case 13:
+#line 116 "rxml/XmlParser.ypp" // lalr1.cc:859
     {
-    (yylhs.value.element) = new Element(*(yystack_[4].value.string));
+    if (sax.start_element_cb)
+    {
+        sax.start_element_cb(*(yystack_[4].value.string), *(yystack_[2].value.string_map));
+    }
     delete (yystack_[4].value.string);
     delete (yystack_[2].value.string_map);
   }
-#line 794 "rxml/XmlParser.cpp" // lalr1.cc:859
+#line 744 "rxml/XmlParser.cpp" // lalr1.cc:859
     break;
 
-  case 10:
-#line 129 "rxml/XmlParser.ypp" // lalr1.cc:859
+  case 14:
+#line 126 "rxml/XmlParser.ypp" // lalr1.cc:859
     {
-    (yylhs.value.string) = (yystack_[2].value.string);
+    if (sax.end_element_cb)
+    {
+        sax.end_element_cb(*(yystack_[2].value.string));
+    }
+    delete (yystack_[2].value.string);
   }
-#line 802 "rxml/XmlParser.cpp" // lalr1.cc:859
+#line 756 "rxml/XmlParser.cpp" // lalr1.cc:859
     break;
 
-  case 11:
-#line 134 "rxml/XmlParser.ypp" // lalr1.cc:859
+  case 15:
+#line 135 "rxml/XmlParser.ypp" // lalr1.cc:859
     {
     (yylhs.value.string_map) = (yystack_[1].value.string_map);
     // TODO fail if the attribute is double defined
     (yylhs.value.string_map)->insert(*(yystack_[0].value.string_pair));
     delete (yystack_[0].value.string_pair);
   }
-#line 813 "rxml/XmlParser.cpp" // lalr1.cc:859
+#line 767 "rxml/XmlParser.cpp" // lalr1.cc:859
     break;
 
-  case 12:
-#line 140 "rxml/XmlParser.ypp" // lalr1.cc:859
+  case 16:
+#line 141 "rxml/XmlParser.ypp" // lalr1.cc:859
     {
     (yylhs.value.string_map) = new std::map<std::string, std::string>();
   }
-#line 821 "rxml/XmlParser.cpp" // lalr1.cc:859
+#line 775 "rxml/XmlParser.cpp" // lalr1.cc:859
     break;
 
-  case 13:
-#line 145 "rxml/XmlParser.ypp" // lalr1.cc:859
+  case 17:
+#line 146 "rxml/XmlParser.ypp" // lalr1.cc:859
     {
     (yylhs.value.string_pair) = new std::pair<std::string, std::string>(*(yystack_[2].value.string), *(yystack_[0].value.string));
     delete (yystack_[2].value.string);
     delete (yystack_[0].value.string);
   }
-#line 831 "rxml/XmlParser.cpp" // lalr1.cc:859
+#line 785 "rxml/XmlParser.cpp" // lalr1.cc:859
+    break;
+
+  case 25:
+#line 164 "rxml/XmlParser.ypp" // lalr1.cc:859
+    {
+    if (sax.text_cb)
+    {
+        sax.text_cb(*(yystack_[0].value.string));
+    }
+    delete (yystack_[0].value.string);
+  }
+#line 797 "rxml/XmlParser.cpp" // lalr1.cc:859
+    break;
+
+  case 26:
+#line 171 "rxml/XmlParser.ypp" // lalr1.cc:859
+    {
+    if (sax.text_cb)
+    {
+        sax.text_cb(*(yystack_[0].value.string));
+    }
+    delete (yystack_[0].value.string);
+  }
+#line 809 "rxml/XmlParser.cpp" // lalr1.cc:859
+    break;
+
+  case 27:
+#line 180 "rxml/XmlParser.ypp" // lalr1.cc:859
+    {
+    if (sax.cdata_cb)
+    {
+        sax.cdata_cb(*(yystack_[0].value.string));
+    }
+    delete (yystack_[0].value.string);
+  }
+#line 821 "rxml/XmlParser.cpp" // lalr1.cc:859
     break;
 
 
-#line 835 "rxml/XmlParser.cpp" // lalr1.cc:859
+#line 825 "rxml/XmlParser.cpp" // lalr1.cc:859
             default:
               break;
             }
@@ -1093,79 +1083,83 @@ namespace rxml {
   const signed char
   parser::yypact_[] =
   {
-      -2,     5,    13,    14,    11,    11,    -6,     7,    -6,    -6,
-      -6,    -6,    -6,    -6,    -6,    11,    -3,     2,    -6,    -6,
-      -6,    -6,     8,    -6,    -6,    -6,    -6,    -6,    -6,    -6,
-      -6,    -6,    12,    -6,    15,     2,    11,    10,    -6,     9,
-      19,    -6,    -6,    -6,    -6
+      -5,    -2,    24,    15,     6,     6,    -6,    -6,    -6,    -6,
+      20,    -6,    -6,    -6,    -6,    -6,    14,    15,    -6,    -6,
+      -1,     6,    -6,     1,    17,    -6,    16,    -6,    -6,    18,
+      -6,    -6,    -6,    -6,    -6,    -6,    -6,    -6,    -6,    19,
+      -6,    -1,     6,    -6,    13,    22,    -6,    -6,    -6
   };
 
   const unsigned char
   parser::yydefact_[] =
   {
-       4,     0,     0,     0,    28,    28,     1,     0,     2,     7,
-      15,    26,    27,     3,    12,    28,     0,    28,    12,    21,
-      22,    25,     0,    23,    24,    18,    17,     6,    14,    16,
-      19,    20,     0,    11,     0,    28,    28,     0,     5,     0,
-       0,    13,     9,     8,    10
+       4,     0,     0,     8,    31,    31,     1,    29,    30,    28,
+       0,     6,     5,     7,     3,    16,     0,     8,    11,    19,
+      31,    31,     2,     0,     0,    15,     0,    16,    26,     0,
+      25,    27,    22,    21,    10,    18,    20,    23,    24,     0,
+       9,    31,    31,    17,     0,     0,    13,    12,    14
   };
 
   const signed char
   parser::yypgoto_[] =
   {
-      -6,    -6,    -6,    16,    17,    -6,    -6,    -6,     6,    -6,
-      -6,    -6,    -6,    -6,    -6,    -5
+      -6,    -6,    -6,    23,     2,     9,    -6,    -6,    -6,     7,
+      -6,    -6,    -6,    -6,    -6,    21,    -4
   };
 
   const signed char
   parser::yydefgoto_[] =
   {
-      -1,     2,     3,     4,     8,     9,    10,    27,    17,    33,
-      16,    28,    29,    30,    31,    13
+      -1,     2,     3,    10,    11,    17,    18,    19,    34,    20,
+      25,    23,    35,    36,    37,    12,    13
   };
 
   const unsigned char
   parser::yytable_[] =
   {
-      14,    19,    20,    21,     7,    22,    11,    12,     1,     1,
-      18,    23,    34,     6,    24,    11,    12,    32,    42,    43,
-       5,     7,    15,    36,    35,    37,    41,    38,    44,     0,
-      39,    40,    25,    26
+      14,    15,     4,     7,     8,    28,     1,     9,    16,    29,
+       7,     8,     1,     5,    24,    30,    26,    27,    31,     7,
+       8,     9,    46,    47,     6,    32,     1,    16,    40,    21,
+      39,    48,    33,    42,    41,    43,     0,    44,    45,     0,
+      22,     0,     0,     0,    38
   };
 
   const signed char
   parser::yycheck_[] =
   {
-       5,     4,     5,     6,     7,     8,     4,     5,    11,    11,
-      15,    14,    17,     0,    17,     4,     5,    15,     9,    10,
-      15,     7,    15,    15,    18,    13,    16,    12,     9,    -1,
-      35,    36,    16,    16
+       4,     5,     0,     4,     5,     4,    11,     6,     7,     8,
+       4,     5,    11,    15,    15,    14,    20,    21,    17,     4,
+       5,     6,     9,    10,     0,    23,    11,     7,    12,    15,
+      13,     9,    23,    15,    27,    16,    -1,    41,    42,    -1,
+      17,    -1,    -1,    -1,    23
   };
 
   const unsigned char
   parser::yystos_[] =
   {
-       0,    11,    19,    20,    21,    15,     0,     7,    22,    23,
-      24,     4,     5,    33,    33,    15,    28,    26,    33,     4,
-       5,     6,     8,    14,    17,    21,    22,    25,    29,    30,
-      31,    32,    15,    27,    33,    26,    15,    13,    12,    33,
-      33,    16,     9,    10,     9
+       0,    11,    19,    20,    22,    15,     0,     4,     5,     6,
+      21,    22,    33,    34,    34,    34,     7,    23,    24,    25,
+      27,    15,    21,    29,    15,    28,    34,    34,     4,     8,
+      14,    17,    22,    23,    26,    30,    31,    32,    33,    13,
+      12,    27,    15,    16,    34,    34,     9,    10,     9
   };
 
   const unsigned char
   parser::yyr1_[] =
   {
-       0,    18,    19,    20,    20,    21,    22,    22,    23,    24,
-      25,    26,    26,    27,    28,    28,    29,    29,    29,    29,
-      29,    30,    30,    30,    31,    32,    33,    33,    33
+       0,    18,    19,    20,    20,    21,    21,    21,    21,    22,
+      23,    23,    24,    25,    26,    27,    27,    28,    29,    29,
+      30,    30,    30,    30,    30,    31,    31,    32,    33,    34,
+      34,    34
   };
 
   const unsigned char
   parser::yyr2_[] =
   {
-       0,     2,     2,     2,     0,     6,     3,     1,     6,     6,
-       4,     2,     0,     3,     2,     0,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     0
+       0,     2,     4,     2,     0,     1,     1,     1,     0,     6,
+       3,     1,     6,     6,     4,     2,     0,     3,     2,     0,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     0
   };
 
 
@@ -1178,8 +1172,8 @@ namespace rxml {
   "\"end of file\"", "error", "$undefined", "\"lexing error\"",
   "\"white space\"", "\"new line\"", "\"comment\"", "\"<\"", "\"</\"",
   "\">\"", "\"/>\"", "\"<?\"", "\"?>\"", "\"=\"", "\"character data\"",
-  "\"identifier\"", "\"string\"", "\"cdata section\"", "$accept",
-  "document", "prolog", "pi", "element", "emptytag", "stag", "etag",
+  "\"name\"", "\"string\"", "\"cdata section\"", "$accept", "document",
+  "prolog", "misc", "pi", "element", "emptytag", "stag", "etag",
   "attributes", "attribute", "content", "nodes", "text", "cdata",
   "comment", "s", YY_NULLPTR
   };
@@ -1188,9 +1182,10 @@ namespace rxml {
   const unsigned char
   parser::yyrline_[] =
   {
-       0,    84,    84,    89,    89,    92,    99,   110,   115,   122,
-     129,   134,   140,   145,   152,   152,   156,   157,   158,   159,
-     160,   163,   163,   163,   166,   169,   172,   172,   172
+       0,    83,    83,    86,    86,    89,    89,    89,    89,    92,
+      99,    99,   102,   116,   126,   135,   141,   146,   153,   153,
+     157,   158,   159,   160,   161,   164,   171,   180,   189,   192,
+     192,   192
   };
 
   // Print the state stack on the debug stream.
@@ -1273,8 +1268,8 @@ namespace rxml {
 
 #line 4 "rxml/XmlParser.ypp" // lalr1.cc:1167
 } // rxml
-#line 1277 "rxml/XmlParser.cpp" // lalr1.cc:1167
-#line 174 "rxml/XmlParser.ypp" // lalr1.cc:1168
+#line 1272 "rxml/XmlParser.cpp" // lalr1.cc:1167
+#line 194 "rxml/XmlParser.ypp" // lalr1.cc:1168
 
 
 #include <iostream>

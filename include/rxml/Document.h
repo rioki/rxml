@@ -84,7 +84,7 @@ namespace rxml
          * @exception std::logic_error Throws logic_error if the document already
          * has a root element.
          **/
-        std::shared_ptr<Element> create_root_element(const std::string& name);
+        std::shared_ptr<Element> create_root_element(const std::string& name);        
         
         void write(std::ostream& os) const;
         

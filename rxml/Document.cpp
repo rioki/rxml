@@ -24,11 +24,10 @@
 #include "Document.h"
 
 #include <iostream>
-#include <sstream>
+#include <stack>
 
 #include "Element.h"
-#include "XmlLexer.h"
-#include "XmLParser.hpp"
+#include "SaxParser.h"
 
 namespace rxml
 {
@@ -72,7 +71,7 @@ namespace rxml
         root_element = std::make_shared<Element>(name);
         return root_element;
     }
-    
+
     void Document::write(std::ostream& os) const
     {
         if (root_element)
@@ -90,17 +89,42 @@ namespace rxml
     
     std::istream& operator >> (std::istream& is, Document& doc)
     {
-        std::stringstream error;
-        std::string filename;
+        std::stack<std::shared_ptr<Element>> elements;
+
+        SaxParser parser(is);
         
-        XmlLexer lexer(is, error);
-        parser prs(lexer, doc, error, filename);
-        int r = prs.parse();
+        parser.on_start_element([&] (const std::string& name, const std::map<std::string, std::string>& attributes) {
+            std::shared_ptr<Element> element;
+            if (elements.empty())
+            {
+                element = doc.create_root_element(name);
+            }
+            else
+            {
+                element = elements.top()->add_element(name);
+            }
+            //element.set_attributes(attributes);
+            elements.push(element);
+        });
+
+        parser.on_end_element([&] (const std::string& name) {
+            if (elements.top()->get_name() != name)
+            {
+                // TODO location
+                throw std::runtime_error("Mismatched elements.");
+            }
+            elements.pop();
+        });
+
+        parser.on_text([&] (const std::string& text) {
+            if (elements.empty())
+            {
+                throw std::runtime_error("stey text");
+            }
+            elements.top()->add_text(text);
+        });
         
-        if (r != 0)
-        {
-            throw std::runtime_error(error.str());
-        }
+        parser.parse();
         
         return is;
     }

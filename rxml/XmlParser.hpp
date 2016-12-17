@@ -45,9 +45,12 @@
 
 class XmlLexer;
 
-#include "rxml.h"
+#include <map>
+#include <string>
 
-#line 51 "rxml/XmlParser.hpp" // lalr1.cc:377
+#include "SaxParser.h"
+
+#line 54 "rxml/XmlParser.hpp" // lalr1.cc:377
 
 
 # include <cstdlib> // std::abort
@@ -119,7 +122,7 @@ class XmlLexer;
 
 #line 4 "rxml/XmlParser.ypp" // lalr1.cc:377
 namespace rxml {
-#line 123 "rxml/XmlParser.hpp" // lalr1.cc:377
+#line 126 "rxml/XmlParser.hpp" // lalr1.cc:377
 
 
 
@@ -133,14 +136,13 @@ namespace rxml {
     /// Symbol semantic values.
     union semantic_type
     {
-    #line 33 "rxml/XmlParser.ypp" // lalr1.cc:377
+    #line 36 "rxml/XmlParser.ypp" // lalr1.cc:377
     
     std::string*                         string;
     std::map<std::string, std::string>*  string_map;
     std::pair<std::string, std::string>* string_pair;
-    rxml::Element*                       element;
 
-#line 144 "rxml/XmlParser.hpp" // lalr1.cc:377
+#line 146 "rxml/XmlParser.hpp" // lalr1.cc:377
     };
 #else
     typedef YYSTYPE semantic_type;
@@ -172,8 +174,8 @@ namespace rxml {
         PIO = 266,
         PIE = 267,
         EQUAL = 268,
-        CHARS = 269,
-        IDENTIFIER = 270,
+        TEXT = 269,
+        NAME = 270,
         STRING = 271,
         CDATA = 272
       };
@@ -280,7 +282,7 @@ namespace rxml {
 
 
     /// Build a parser object.
-    parser (XmlLexer& lex_yyarg, Document& doc_yyarg, std::ostream& err_yyarg, std::string filename_yyarg);
+    parser (XmlLexer& lex_yyarg, SaxParser& sax_yyarg, std::ostream& err_yyarg, std::string filename_yyarg);
     virtual ~parser ();
 
     /// Parse.
@@ -483,8 +485,8 @@ namespace rxml {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 33,     ///< Last index in yytable_.
-      yynnts_ = 16,  ///< Number of nonterminal symbols.
+      yylast_ = 44,     ///< Last index in yytable_.
+      yynnts_ = 17,  ///< Number of nonterminal symbols.
       yyfinal_ = 6, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
@@ -494,7 +496,7 @@ namespace rxml {
 
     // User arguments.
     XmlLexer& lex;
-    Document& doc;
+    SaxParser& sax;
     std::ostream& err;
     std::string filename;
   };
@@ -502,7 +504,7 @@ namespace rxml {
 
 #line 4 "rxml/XmlParser.ypp" // lalr1.cc:377
 } // rxml
-#line 506 "rxml/XmlParser.hpp" // lalr1.cc:377
+#line 508 "rxml/XmlParser.hpp" // lalr1.cc:377
 
 
 

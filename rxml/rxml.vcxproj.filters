@@ -45,6 +45,9 @@
     <ClCompile Include="XmlParser.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="SaxParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="location.hh">
@@ -84,6 +87,9 @@
       <Filter>API Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\rxml\Text.h">
+      <Filter>API Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\rxml\SaxParser.h">
       <Filter>API Header Files</Filter>
     </ClInclude>
   </ItemGroup>

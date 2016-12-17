@@ -12,11 +12,14 @@
 
 class XmlLexer;
 
-#include "rxml.h"
+#include <map>
+#include <string>
+
+#include "SaxParser.h"
 }
 
 %parse-param {XmlLexer& lex}
-%parse-param {Document& doc}
+%parse-param {SaxParser& sax}
 %parse-param {std::ostream& err}
 %parse-param {std::string filename}
 %lex-param   {XmlLexer& lex}
@@ -34,7 +37,6 @@ class XmlLexer;
     std::string*                         string;
     std::map<std::string, std::string>*  string_map;
     std::pair<std::string, std::string>* string_pair;
-    rxml::Element*                       element;
 }
 
 %token              END 0           "end of file"
@@ -50,20 +52,17 @@ class XmlLexer;
 %token              PIO             "<?"
 %token              PIE             "?>"
 %token              EQUAL           "="
-%token <string>     CHARS           "character data"
-%token <string>     IDENTIFIER      "identifier"
+%token <string>     TEXT            "character data"
+%token <string>     NAME            "name"
 %token <string>     STRING          "string"
 %token <string>     CDATA           "cdata section"
 
-%type <string>      etag
-%type <element>     stag emptytag element
 %type <string_pair> attribute
 %type <string_map>  attributes
 
 %destructor { delete $$; } <string>
 %destructor { delete $$; } <string_map>
 %destructor { delete $$; } <string_pair>
-%destructor { delete $$; } <element>
 
 %{
 int yylex(rxml::parser::semantic_type* yylval, rxml::parser::location_type* yylloc, XmlLexer& lex);
@@ -81,53 +80,55 @@ std::shared_ptr<Type> wrap(Type* type)
 %%
 
 document:
-  prolog element {
-    doc.set_root_element(wrap($2));
-  };
+  prolog misc element misc;
 
 prolog:
   pi s | /* nothing */;
   
+misc: 
+    comment | pi | s | /* nothing */;
+
 pi:
-  "<?" IDENTIFIER s attributes s "?>" {
+  "<?" NAME s attributes s "?>" {
     // TODO     
     delete $2;
     delete $4;
   };  
   
 element:
-  stag content etag {
-    if ($1->get_name() != *$3)
-    {
-        error(@1, "Tag does not match.");
-        return -1;
-    }
-    
-    $$ = $1;
-    // atach content
-    
-  } |
-  emptytag {
-    $$ = $1;
-  };
+  stag content etag | emptytag;
   
 emptytag:
-  "<" IDENTIFIER s attributes s "/>" {
-    $$ = new Element(*$2);
+  "<" NAME s attributes s "/>" {
+    if (sax.start_element_cb)
+    {
+        sax.start_element_cb(*$2, *$4);
+    }
+    if (sax.end_element_cb)
+    {
+        sax.end_element_cb(*$2);
+    }
     delete $2;
     delete $4;
   };
   
 stag:
-  "<" IDENTIFIER s attributes s ">" {
-    $$ = new Element(*$2);
+  "<" NAME s attributes s ">" {
+    if (sax.start_element_cb)
+    {
+        sax.start_element_cb(*$2, *$4);
+    }
     delete $2;
     delete $4;
   };
   
 etag:
-  "</" IDENTIFIER s ">" {
-    $$ = $2;
+  "</" NAME s ">" {
+    if (sax.end_element_cb)
+    {
+        sax.end_element_cb(*$2);
+    }
+    delete $2;
   };
   
 attributes:
@@ -142,7 +143,7 @@ attributes:
   };
   
 attribute:
-  IDENTIFIER "=" STRING {
+  NAME "=" STRING {
     $$ = new std::pair<std::string, std::string>(*$1, *$3);
     delete $1;
     delete $3;
@@ -160,10 +161,29 @@ nodes:
   comment; 
   
 text: 
-  WS | NL | CHARS;
+  TEXT {
+    if (sax.text_cb)
+    {
+        sax.text_cb(*$1);
+    }
+    delete $1;
+  } | 
+  WS {
+    if (sax.text_cb)
+    {
+        sax.text_cb(*$1);
+    }
+    delete $1;
+  };
 
 cdata:
-  CDATA;
+  CDATA {
+    if (sax.cdata_cb)
+    {
+        sax.cdata_cb(*$1);
+    }
+    delete $1;
+  };
 
 comment:
   COMMENT;

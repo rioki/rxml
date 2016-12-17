@@ -140,6 +140,19 @@ namespace rxml
     {
         return children;
     }
+
+    std::shared_ptr<Element> Element::find_element(const std::string& name)
+    {
+        for (auto child : children)
+        {
+            auto element = std::dynamic_pointer_cast<Element>(child);
+            if (element && element->get_name() == name)
+            {
+                return element;
+            }
+        }
+        return nullptr;
+    }
     
     void Element::write(std::ostream& os) const
     {

@@ -21,15 +21,51 @@
 // THE SOFTWARE.
 // 
 
-#ifndef _RXML_H_
-#define _RXML_H_
-
-#include "Document.h"
-#include "Node.h"
-#include "Element.h"
-#include "Content.h"
-#include "Text.h"
-#include "CData.h"
 #include "SaxParser.h"
 
-#endif
+#include <sstream>
+
+#include "XmlLexer.h"
+#include "XmLParser.hpp"
+
+namespace rxml
+{
+    SaxParser::SaxParser(std::istream& i, const std::string& f)
+    : input(i), file(f) {}
+
+    SaxParser::~SaxParser() {}
+
+    void SaxParser::on_start_element(std::function<void (const std::string&, const std::map<std::string, std::string>&)> cb)
+    {
+        start_element_cb = cb;
+    }
+
+    void SaxParser::on_end_element(std::function<void (const std::string&)> cb)
+    {
+        end_element_cb = cb;
+    }
+
+    void SaxParser::on_text(std::function<void (const std::string&)> cb)
+    {
+        text_cb = cb;
+    }
+
+    void SaxParser::on_cdata(std::function<void (const std::string&)> cb)
+    {
+        cdata_cb = cb;
+    }
+
+    void SaxParser::parse()
+    {
+        std::stringstream error;
+        
+        XmlLexer lexer(input, error);
+        parser prs(lexer, *this, error, file);
+        int r = prs.parse();
+        
+        if (r != 0)
+        {
+            throw std::runtime_error(error.str());
+        }
+    }
+}
