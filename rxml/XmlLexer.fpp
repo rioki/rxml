@@ -87,12 +87,14 @@ yylloc->step();
                         } 
 
 <ELEMENT>{string1}      {
-                            yylval->string = new std::string(YYText());
+                            size_t l = strlen(YYText());
+                            yylval->string = new std::string(YYText()+1, l - 2);
                             return token::STRING;
                         }
 
 <ELEMENT>{string2}      {
-                            yylval->string = new std::string(YYText());                            
+                            size_t l = strlen(YYText());
+                            yylval->string = new std::string(YYText()+1, l - 2);
                             return token::STRING;
                         }
 

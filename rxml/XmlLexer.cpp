@@ -736,32 +736,34 @@ case 8:
 YY_RULE_SETUP
 #line 89 "rxml/XmlLexer.fpp"
 {
-                            yylval->string = new std::string(YYText());
+                            size_t l = strlen(YYText());
+                            yylval->string = new std::string(YYText()+1, l - 2);
                             return token::STRING;
                         }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 94 "rxml/XmlLexer.fpp"
+#line 95 "rxml/XmlLexer.fpp"
 {
-                            yylval->string = new std::string(YYText());                            
+                            size_t l = strlen(YYText());
+                            yylval->string = new std::string(YYText()+1, l - 2);
                             return token::STRING;
                         }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 99 "rxml/XmlLexer.fpp"
+#line 101 "rxml/XmlLexer.fpp"
 return token::EQUAL;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 101 "rxml/XmlLexer.fpp"
+#line 103 "rxml/XmlLexer.fpp"
 return token::WS;
 	YY_BREAK
 case 12:
 /* rule 12 can match eol */
 YY_RULE_SETUP
-#line 103 "rxml/XmlLexer.fpp"
+#line 105 "rxml/XmlLexer.fpp"
 {
                             yylloc->lines(1); 
                             yylloc->step();
@@ -770,7 +772,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 109 "rxml/XmlLexer.fpp"
+#line 111 "rxml/XmlLexer.fpp"
 {
                             BEGIN(INITIAL);
                             return token::GT;
@@ -778,7 +780,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 114 "rxml/XmlLexer.fpp"
+#line 116 "rxml/XmlLexer.fpp"
 {
                             BEGIN(INITIAL);
                             return token::GTS;
@@ -786,7 +788,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 119 "rxml/XmlLexer.fpp"
+#line 121 "rxml/XmlLexer.fpp"
 {
                             BEGIN(INITIAL);
                             return token::PIE;
@@ -794,15 +796,15 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 124 "rxml/XmlLexer.fpp"
+#line 126 "rxml/XmlLexer.fpp"
 return token::ERROR;
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 126 "rxml/XmlLexer.fpp"
+#line 128 "rxml/XmlLexer.fpp"
 ECHO;
 	YY_BREAK
-#line 806 "rxml/XmlLexer.cpp"
+#line 808 "rxml/XmlLexer.cpp"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(ELEMENT):
 	yyterminate();
@@ -1758,7 +1760,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 126 "rxml/XmlLexer.fpp"
+#line 128 "rxml/XmlLexer.fpp"
 
 
 

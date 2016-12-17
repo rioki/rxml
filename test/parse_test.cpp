@@ -99,4 +99,31 @@ SUITE(document)
         auto children = xmessage->get_children();
         CHECK_EQUAL(7, children.size());
     }
+
+    TEST(parse_attributes)
+    {
+        rxml::Document doc;
+        
+        std::string xml = 
+          "<?xml version=\"1.0\"?>\n"
+          "<screen>"
+          "  <button x=\"12\" y='13' text=\"It's Me\"/>\n"
+          "</screen>\n";
+        
+        std::stringstream buff(xml);
+        buff >> doc;
+
+        auto xscreen = doc.get_root_element();  
+
+        auto xbutton = xscreen->find_element("button");
+
+        CHECK(xbutton->has_attribute("x"));
+        CHECK(xbutton->has_attribute("y"));
+        CHECK(xbutton->has_attribute("text"));
+
+        CHECK_EQUAL("12", xbutton->get_attribute("x"));
+        CHECK_EQUAL("13", xbutton->get_attribute("y"));
+        CHECK_EQUAL("It's Me", xbutton->get_attribute("text"));
+        
+    }
 }

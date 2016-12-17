@@ -143,7 +143,7 @@ attributes:
   };
   
 attribute:
-  NAME "=" STRING {
+  NAME "=" STRING s {
     $$ = new std::pair<std::string, std::string>(*$1, *$3);
     delete $1;
     delete $3;

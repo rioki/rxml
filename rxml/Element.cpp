@@ -81,6 +81,16 @@ namespace rxml
             throw std::logic_error(__FUNCTION__);
         }
     }
+
+    void Element::set_attributes(const std::map<std::string, std::string>& value)
+    {
+        attributes = value;
+    }
+
+    const std::map<std::string, std::string>& Element::get_attributes() const
+    {
+        return attributes;
+    }
     
     std::string Element::get_text() const
     {

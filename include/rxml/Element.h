@@ -82,6 +82,10 @@ namespace rxml
          * Remove a given attribute.
          **/
         void remove_attribute(const std::string& name);
+
+        void set_attributes(const std::map<std::string, std::string>& value);
+
+        const std::map<std::string, std::string>& get_attributes() const;
         
         /**
          * Get the element's text or cdata. Empty if not found.

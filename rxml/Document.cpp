@@ -103,7 +103,7 @@ namespace rxml
             {
                 element = elements.top()->add_element(name);
             }
-            //element.set_attributes(attributes);
+            element->set_attributes(attributes);
             elements.push(element);
         });
 
