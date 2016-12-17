@@ -123,7 +123,6 @@ SUITE(document)
 
         CHECK_EQUAL("12", xbutton->get_attribute("x"));
         CHECK_EQUAL("13", xbutton->get_attribute("y"));
-        CHECK_EQUAL("It's Me", xbutton->get_attribute("text"));
-        
+        CHECK_EQUAL("It's Me", xbutton->get_attribute("text"));        
     }
 }

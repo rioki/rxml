@@ -83,7 +83,7 @@ document:
   prolog misc element misc;
 
 prolog:
-  pi s | /* nothing */;
+  pi | /* nothing */;
   
 misc: 
     comment | pi | s | /* nothing */;
