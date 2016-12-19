@@ -39,17 +39,20 @@ text            [^<]+
 yylloc->step();
 %}
 
-{cdata}                 {
-                            yylval->string = new std::string(YYText());
-                            return token::CDATA;                        
-                        }
-
 {comment}               {
                             yylval->string = new std::string(YYText());
                             int ln = count_lines(*yylval->string);
                             yylloc->lines(ln); 
                             yylloc->step();
                             return token::COMMENT;                        
+                        }
+
+{cdata}                 {
+                            yylval->string = new std::string(YYText());
+                            int ln = count_lines(*yylval->string);
+                            yylloc->lines(ln); 
+                            yylloc->step();
+                            return token::CDATA;                        
                         }
 
 {text}                  {

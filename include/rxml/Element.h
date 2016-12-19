@@ -108,6 +108,8 @@ namespace rxml
          * Set the element's CData
          **/
         void set_cdata(const std::string& text);
+        
+        void add_cdata(const std::string& text);
        
         /**       
          * Add a element.

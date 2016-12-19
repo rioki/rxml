@@ -84,7 +84,7 @@ rxml/XmlLexer.cpp: rxml/XmlLexer.fpp
 
 rxml/XmlParser.hpp: rxml/XmlParser.ypp
 rxml/XmlParser.cpp: rxml/XmlParser.ypp
-	$(BISON) -o $@ $^
+	$(BISON) --report=all -o $@ $^
  
 ifneq "$(MAKECMDGOALS)" "clean"
 -include $(patsubst %.cpp, .obj/%.d, $(SOURCES))

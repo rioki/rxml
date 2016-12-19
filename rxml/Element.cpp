@@ -139,6 +139,12 @@ namespace rxml
         children.push_back(std::make_shared<CData>(this, text));
     }
     
+    void Element::add_cdata(const std::string& text)
+    {
+        children.push_back(std::make_shared<CData>(this, text));
+    }
+    
+    
     std::shared_ptr<Element> Element::add_element(const std::string& name)
     {
         auto element = std::make_shared<Element>(this, name);

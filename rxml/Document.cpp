@@ -124,6 +124,14 @@ namespace rxml
             elements.top()->add_text(text);
         });
         
+        parser.on_cdata([&] (const std::string& text) {
+            if (elements.empty())
+            {
+                throw std::runtime_error("stey cdata");
+            }
+            elements.top()->add_cdata(text);
+        });
+        
         parser.parse();
         
         return is;

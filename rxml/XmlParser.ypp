@@ -58,7 +58,7 @@ class XmlLexer;
 %token <string>     CDATA           "cdata section"
 
 %type <string_pair> attribute
-%type <string_map>  attributes
+%type <string_map>  attributes attributes_op
 
 %destructor { delete $$; } <string>
 %destructor { delete $$; } <string_map>
@@ -80,16 +80,17 @@ std::shared_ptr<Type> wrap(Type* type)
 %%
 
 document:
-  prolog misc element misc;
-
-prolog:
-  pi | /* nothing */;
+  misc element misc;
   
 misc: 
-    comment | pi | s | /* nothing */;
+    misc misc_elem |
+    /* nothing */;
+
+misc_elem:
+    comment | pi | s;
 
 pi:
-  "<?" NAME s attributes s "?>" {
+  "<?" NAME s attributes "?>" {
     // TODO     
     delete $2;
     delete $4;
@@ -99,31 +100,31 @@ element:
   stag content etag | emptytag;
   
 emptytag:
-  "<" NAME s attributes s "/>" {
+  "<" NAME attributes_op "/>" {
     if (sax.start_element_cb)
     {
-        sax.start_element_cb(*$2, *$4);
+        sax.start_element_cb(*$2, *$3);
     }
     if (sax.end_element_cb)
     {
         sax.end_element_cb(*$2);
     }
     delete $2;
-    delete $4;
+    delete $3;
   };
   
 stag:
-  "<" NAME s attributes s ">" {
+  "<" NAME attributes_op ">" {
     if (sax.start_element_cb)
     {
-        sax.start_element_cb(*$2, *$4);
+        sax.start_element_cb(*$2, *$3);
     }
     delete $2;
-    delete $4;
+    delete $3;
   };
   
 etag:
-  "</" NAME s ">" {
+  "</" NAME s_op ">" {
     if (sax.end_element_cb)
     {
         sax.end_element_cb(*$2);
@@ -131,19 +132,29 @@ etag:
     delete $2;
   };
   
-attributes:
-  attributes attribute {
-    $$ = $1;
-    // TODO fail if the attribute is double defined
-    $$->insert(*$2);
-    delete $2;
+attributes_op:
+  s attributes s_op {
+    $$ = $2;
   } |
-  /* nothing */ {
+  s_op {
     $$ = new std::map<std::string, std::string>();
   };
   
+attributes:
+  attributes s attribute {
+    $$ = $1;
+    // TODO fail if the attribute is double defined
+    $$->insert(*$3);
+    delete $3;
+  } |
+  attribute {
+    $$ = new std::map<std::string, std::string>();
+    $$->insert(*$1);
+    delete $1;
+  };
+  
 attribute:
-  NAME "=" STRING s {
+  NAME "=" STRING {
     $$ = new std::pair<std::string, std::string>(*$1, *$3);
     delete $1;
     delete $3;
@@ -189,7 +200,10 @@ comment:
   COMMENT;
 
 s:
-  WS | NL | /* nothing */;
+  WS | NL;
+
+s_op:
+  s | /* nothing */;
   
 %%
 

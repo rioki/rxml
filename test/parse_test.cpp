@@ -68,7 +68,7 @@ SUITE(document)
         
         std::string xml = 
           "<?xml version=\"1.0\"?>\n"
-          "<message>\n"
+          "<message >\n"
           "  <from>rioki</from>\n"
           "  <to>World</to>\n"
           "  <body>Yo I reinvented the wheel.</body>\n"
@@ -124,5 +124,29 @@ SUITE(document)
         CHECK_EQUAL("12", xbutton->get_attribute("x"));
         CHECK_EQUAL("13", xbutton->get_attribute("y"));
         CHECK_EQUAL("It's Me", xbutton->get_attribute("text"));        
+    }
+    
+    TEST(parse_cdata)
+    {
+        rxml::Document doc;
+        
+        std::string xml = 
+          "<?xml version=\"1.0\"?>\n"
+          "<stuff>\n"
+          "  <![CDATA[<yolo swag>]]>\n"          
+          "</stuff>\n";
+        
+        std::stringstream buff(xml);
+        buff >> doc;
+
+        auto xstuff = doc.get_root_element();  
+        CHECK((bool)xstuff);
+
+        auto data = xstuff->get_children();
+        CHECK_EQUAL(3, data.size());
+        
+        //auto cdata = std::dynamic_pointer_cast<rxml::CData>(data[1]);
+        //CHECK((bool)cdata);
+        //CHECK_EQUAL("<yolo swag>", cdata->get_value());
     }
 }
