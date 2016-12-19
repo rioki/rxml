@@ -44,7 +44,7 @@ rxml-test$(EXEEXT): $(patsubst %.cpp, .obj/%.o, $(TESTSRCS)) librxml$(LIBEXT)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ -o $@
  
 clean: 
-	rm -rf .obj rxml$(LIBEXT) librxml.a rxml-test$(EXEEXT)	
+	rm -rf .obj librxml$(LIBEXT) librxml.a rxml-test$(EXEEXT)	
  
 dist:
 	mkdir rxml-$(VERSION)
