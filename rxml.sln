@@ -5,11 +5,6 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rxml", "rxml\rxml.vcxproj", "{EF71BA20-014A-4272-A71A-150F414C7E01}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rxml-test", "rxml-test\rxml-test.vcxproj", "{D44641D5-C4FE-47D6-A7C9-983621D0ED0C}"
-	ProjectSection(ProjectDependencies) = postProject
-		{EF71BA20-014A-4272-A71A-150F414C7E01} = {EF71BA20-014A-4272-A71A-150F414C7E01}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -26,14 +21,6 @@ Global
 		{EF71BA20-014A-4272-A71A-150F414C7E01}.Release|x64.Build.0 = Release|x64
 		{EF71BA20-014A-4272-A71A-150F414C7E01}.Release|x86.ActiveCfg = Release|Win32
 		{EF71BA20-014A-4272-A71A-150F414C7E01}.Release|x86.Build.0 = Release|Win32
-		{D44641D5-C4FE-47D6-A7C9-983621D0ED0C}.Debug|x64.ActiveCfg = Debug|x64
-		{D44641D5-C4FE-47D6-A7C9-983621D0ED0C}.Debug|x64.Build.0 = Debug|x64
-		{D44641D5-C4FE-47D6-A7C9-983621D0ED0C}.Debug|x86.ActiveCfg = Debug|Win32
-		{D44641D5-C4FE-47D6-A7C9-983621D0ED0C}.Debug|x86.Build.0 = Debug|Win32
-		{D44641D5-C4FE-47D6-A7C9-983621D0ED0C}.Release|x64.ActiveCfg = Release|x64
-		{D44641D5-C4FE-47D6-A7C9-983621D0ED0C}.Release|x64.Build.0 = Release|x64
-		{D44641D5-C4FE-47D6-A7C9-983621D0ED0C}.Release|x86.ActiveCfg = Release|Win32
-		{D44641D5-C4FE-47D6-A7C9-983621D0ED0C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
