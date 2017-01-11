@@ -16,9 +16,6 @@
     <Filter Include="Generated Files">
       <UniqueIdentifier>{264ac556-3851-47a5-94d7-bcfcc4aa3a5e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="API Header Files">
-      <UniqueIdentifier>{9466f511-e2fb-4ec0-9fbf-28a0cbc88a3e}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CData.cpp">
@@ -65,32 +62,32 @@
     <ClInclude Include="XmlLexer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\rxml\CData.h">
-      <Filter>API Header Files</Filter>
+    <ClInclude Include="CData.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\rxml\Content.h">
-      <Filter>API Header Files</Filter>
+    <ClInclude Include="Content.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\rxml\defines.h">
-      <Filter>API Header Files</Filter>
+    <ClInclude Include="defines.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\rxml\Document.h">
-      <Filter>API Header Files</Filter>
+    <ClInclude Include="Document.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\rxml\Element.h">
-      <Filter>API Header Files</Filter>
+    <ClInclude Include="Element.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\rxml\Node.h">
-      <Filter>API Header Files</Filter>
+    <ClInclude Include="Node.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\rxml\rxml.h">
-      <Filter>API Header Files</Filter>
+    <ClInclude Include="rxml.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\rxml\Text.h">
-      <Filter>API Header Files</Filter>
+    <ClInclude Include="SaxParser.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\rxml\SaxParser.h">
-      <Filter>API Header Files</Filter>
+    <ClInclude Include="Text.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
