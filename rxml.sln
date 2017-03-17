@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rxml", "rxml\rxml.vcxproj", "{EF71BA20-014A-4272-A71A-150F414C7E01}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcxproj", "{D44641D5-C4FE-47D6-A7C9-983621D0ED0C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rxml-test", "rxml-test\rxml-test.vcxproj", "{D44641D5-C4FE-47D6-A7C9-983621D0ED0C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{EF71BA20-014A-4272-A71A-150F414C7E01} = {EF71BA20-014A-4272-A71A-150F414C7E01}
 	EndProjectSection
