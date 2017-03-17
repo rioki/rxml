@@ -90,7 +90,7 @@ misc_elem:
     comment | pi | s;
 
 pi:
-  "<?" NAME s attributes "?>" {
+  "<?" NAME s attributes s_op "?>" {
     // TODO     
     delete $2;
     delete $4;

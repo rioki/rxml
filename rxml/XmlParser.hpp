@@ -485,7 +485,7 @@ namespace rxml {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 49,     ///< Last index in yytable_.
+      yylast_ = 47,     ///< Last index in yytable_.
       yynnts_ = 19,  ///< Number of nonterminal symbols.
       yyfinal_ = 3, ///< Termination state number.
       yyterror_ = 1,

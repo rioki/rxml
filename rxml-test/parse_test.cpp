@@ -67,7 +67,7 @@ SUITE(document)
         rxml::Document doc;
         
         std::string xml = 
-          "<?xml version=\"1.0\"?>\n"
+          "<?xml version=\"1.0\" ?>\n"
           "<message >\n"
           "  <from>rioki</from>\n"
           "  <to>World</to>\n"
@@ -123,7 +123,7 @@ SUITE(document)
 
         CHECK_EQUAL("12", xbutton->get_attribute("x"));
         CHECK_EQUAL("13", xbutton->get_attribute("y"));
-        CHECK_EQUAL("It's Me", xbutton->get_attribute("text"));        
+        CHECK_EQUAL("It's Me", xbutton->get_attribute("text"));                
     }
     
     TEST(parse_cdata)
