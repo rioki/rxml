@@ -1,6 +1,6 @@
 // 
 // rxml - rioki's xml lbrary
-// Copyright 2016 Sean "rioki" Farrell <sean.farrell@rioki.org>
+// Copyright 2016-2017 Sean "rioki" Farrell <sean.farrell@rioki.org>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,51 +21,39 @@
 // THE SOFTWARE.
 // 
 
-#ifndef _RXML_NODE_H_
-#define _RXML_NODE_H_
+#ifndef _RXML_TEXT_H_
+#define _RXML_TEXT_H_
 
-#include <iosfwd>
+#include <string>
 
-#include "defines.h"
+#include "Content.h"
 
 namespace rxml
 {
     /**
-     * XML Element
+     * XML Text Node
      **/  
-    class RXML_EXPORT Node
+    class RXML_EXPORT Text : public Content
     {
     public:
+        /**
+         * Construct a text node.
+         **/
+        Text();
         
-        Node();
-        
+        /**
+         * Initialize a text node.
+         **/
         explicit
-        Node(Node* parent);
-        
-        Node(const Node&) = delete;
-        
-        virtual ~Node();
-        
-        Node& operator = (const Node&) = delete;
+        Text(const std::string& value);
         
         /**
-         * Check if the node has a parent.
+         * Initialize a text node.
          **/
-        bool has_parent() const;
+        Text(Node* parent, const std::string& value);
         
-        /**
-         * Get the node's parent;
-         *
-         * @{
-         **/
-        Node* get_parent();  
-        const Node* get_parent() const;        
-         /** @} **/
-         
-        virtual void write(std::ostream& os) const = 0;
+        virtual void write(std::ostream& os) const override;
         
-    private:
-        Node* parent;
     };
 }
 

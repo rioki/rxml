@@ -1,6 +1,6 @@
 // 
 // rxml - rioki's xml lbrary
-// Copyright 2016 Sean "rioki" Farrell <sean.farrell@rioki.org>
+// Copyright 2016-2017 Sean "rioki" Farrell <sean.farrell@rioki.org>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,6 +24,8 @@
 #include "Document.h"
 
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include <stack>
 
 #include "Element.h"
@@ -70,6 +72,36 @@ namespace rxml
         
         root_element = std::make_shared<Element>(name);
         return root_element;
+    }
+
+    void Document::read(const std::string& file)
+    {
+        std::ifstream in(file);
+        if (in.is_open())
+        {
+            in >> *this;
+        }
+        else
+        {
+            std::stringstream buff;
+            buff << "Failed to open " << file << " for reading.";
+            throw std::runtime_error(buff.str());
+        }
+    }
+
+    void Document::write(const std::string& file)
+    {
+        std::ofstream out(file);
+        if (out.is_open())
+        {
+            out << *this;
+        }
+        else
+        {
+            std::stringstream buff;
+            buff << "Failed to open " << file << " for writing.";
+            throw std::runtime_error(buff.str());
+        }
     }
 
     void Document::write(std::ostream& os) const

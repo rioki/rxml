@@ -1,6 +1,6 @@
 // 
 // rxml - rioki's xml lbrary
-// Copyright 2016 Sean "rioki" Farrell <sean.farrell@rioki.org>
+// Copyright 2016-2017 Sean "rioki" Farrell <sean.farrell@rioki.org>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,35 +21,51 @@
 // THE SOFTWARE.
 // 
 
-#ifndef _RXML_CDATA_H_
-#define _RXML_CDATA_H_
+#ifndef _RXML_NODE_H_
+#define _RXML_NODE_H_
 
-#include <string>
+#include <iosfwd>
 
-#include "Content.h"
+#include "defines.h"
 
 namespace rxml
 {
     /**
-     * XML CData Node
+     * XML Element
      **/  
-    class RXML_EXPORT CData : public Content
+    class RXML_EXPORT Node
     {
     public:
-        /**
-         * Construct a CData node.
-         **/
-        CData();
+        
+        Node();
+        
+        explicit
+        Node(Node* parent);
+        
+        Node(const Node&) = delete;
+        
+        virtual ~Node();
+        
+        Node& operator = (const Node&) = delete;
         
         /**
-         * Initialize a CData node.
+         * Check if the node has a parent.
          **/
-        CData(const std::string& value);
+        bool has_parent() const;
         
-        CData(Node* parent, const std::string& value);
+        /**
+         * Get the node's parent;
+         *
+         * @{
+         **/
+        Node* get_parent();  
+        const Node* get_parent() const;        
+         /** @} **/
+         
+        virtual void write(std::ostream& os) const = 0;
         
-        virtual void write(std::ostream& os) const override;
-        
+    private:
+        Node* parent;
     };
 }
 

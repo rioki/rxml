@@ -1,6 +1,6 @@
 // 
 // rxml - rioki's xml lbrary
-// Copyright 2016 Sean "rioki" Farrell <sean.farrell@rioki.org>
+// Copyright 2016-2017 Sean "rioki" Farrell <sean.farrell@rioki.org>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -86,6 +86,10 @@ namespace rxml
          **/
         std::shared_ptr<Element> create_root_element(const std::string& name);        
         
+        void read(const std::string& file);
+
+        void write(const std::string& file);
+
         void write(std::ostream& os) const;
         
     private:

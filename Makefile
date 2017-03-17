@@ -2,18 +2,18 @@
 VERSION  := 0.1.0
 
 CXX      ?= g++ 
-CXXFLAGS := -std=c++0x -Iinclude -Iinclude/rxml $(CXXFLAGS)
+CXXFLAGS := -std=c++0x -I. $(CXXFLAGS)
 LDFLAGS  += 
 FLEX     ?= flex
 BISON    ?= bison
 prefix   ?= /usr/local
  
-HEADERS    = $(wildcard include/*.h)
-PRIVHDRS   = $(wildcard rxml/*.h) $(wildcard rxml/*.hpp) $(wildcard rxml/*.hh)
-SOURCES    = $(wildcard rxml/*.cpp)
-TESTSRCS   = $(wildcard test/*.cpp)
 
-EXTRA_DIST = Makefile README.md rxml/XmlLexer.fpp rxml/XmlParser.ypp 
+HEADERS    = $(wildcard rxml/*.h) $(wildcard rxml/*.hpp) $(wildcard rxml/*.hh)
+SOURCES    = $(wildcard rxml/*.cpp)
+TESTSRCS   = $(wildcard rxml-test/*.cpp)
+
+EXTRA_DIST = Makefile README.md rxml/XmlLexer.fpp rxml/XmlParser.ypp $(wildcard rxml-test/*.h)
 DIST_FILES = $(HEADERS) $(SOURCES) $(TESTSRCS) $(PRIVHDRS) $(EXTRA_DIST)
  
 ifeq ($(OS), Windows_NT)
@@ -38,7 +38,7 @@ librxml$(LIBEXT): $(patsubst %.cpp, .obj/%.o, $(SOURCES))
 endif 
  
 check: rxml-test$(EXEEXT)	
-	cd test && LD_LIBRARY_PATH=.. ../rxml-test$(EXEEXT)
+	cd rxml-test && LD_LIBRARY_PATH=.. ../rxml-test$(EXEEXT)
  
 rxml-test$(EXEEXT): $(patsubst %.cpp, .obj/%.o, $(TESTSRCS)) librxml$(LIBEXT)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ -o $@

@@ -1,6 +1,6 @@
 // 
 // rxml - rioki's xml lbrary
-// Copyright 2016 Sean "rioki" Farrell <sean.farrell@rioki.org>
+// Copyright 2016-2017 Sean "rioki" Farrell <sean.farrell@rioki.org>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,40 +21,13 @@
 // THE SOFTWARE.
 // 
 
-#ifndef _RXML_TEXT_H_
-#define _RXML_TEXT_H_
+#ifndef _RXML_DEFINES_H_
+#define _RXML_DEFINES_H_
 
-#include <string>
-
-#include "Content.h"
-
-namespace rxml
-{
-    /**
-     * XML Text Node
-     **/  
-    class RXML_EXPORT Text : public Content
-    {
-    public:
-        /**
-         * Construct a text node.
-         **/
-        Text();
-        
-        /**
-         * Initialize a text node.
-         **/
-        explicit
-        Text(const std::string& value);
-        
-        /**
-         * Initialize a text node.
-         **/
-        Text(Node* parent, const std::string& value);
-        
-        virtual void write(std::ostream& os) const override;
-        
-    };
-}
+#ifdef _WIN32
+#define RXML_EXPORT __declspec(dllexport)
+#else
+#define RXML_EXPORT 
+#endif
 
 #endif

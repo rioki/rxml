@@ -1,6 +1,6 @@
 // 
 // rxml - rioki's xml lbrary
-// Copyright 2016 Sean "rioki" Farrell <sean.farrell@rioki.org>
+// Copyright 2016-2017 Sean "rioki" Farrell <sean.farrell@rioki.org>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,55 +21,35 @@
 // THE SOFTWARE.
 // 
 
-#ifndef _RXML_CONTENT_H_
-#define _RXML_CONTENT_H_
+#ifndef _RXML_CDATA_H_
+#define _RXML_CDATA_H_
 
 #include <string>
 
-#include "Node.h"
+#include "Content.h"
 
 namespace rxml
 {
     /**
-     * XML Text, CData base class.
+     * XML CData Node
      **/  
-    class RXML_EXPORT Content : public Node
+    class RXML_EXPORT CData : public Content
     {
     public:
         /**
-         * Construct a content node.
+         * Construct a CData node.
          **/
-        Content();
+        CData();
         
         /**
-         * Initialize a content node.
+         * Initialize a CData node.
          **/
-        explicit
-        Content(const std::string& value);
+        CData(const std::string& value);
         
-        Content(Node* parent, const std::string& value);        
+        CData(Node* parent, const std::string& value);
         
-        /**
-         * Get the value of this node. 
-         *
-         * @return Returns the value of this node or empty if not found.
-         **/
-        const std::string& get_value() const;
+        virtual void write(std::ostream& os) const override;
         
-        /**
-         * Set the value of this node.
-         *
-         * @param value the value to set.
-         **/
-        void set_value(const std::string& value);        
-        
-        /**
-         * Check if a given note is a blank node.
-         **/
-        bool is_blank() const;  
-        
-    protected:
-        std::string value;
     };
 }
 
