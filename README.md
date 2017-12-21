@@ -1,7 +1,7 @@
 
 # rxml
 
-## Is rxml standard compliment? 
+## Is rxml standard compliant? 
 
 Short answer: 
 
