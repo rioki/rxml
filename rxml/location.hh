@@ -40,7 +40,7 @@
 
 # include "position.hh"
 
-#line 4 "rxml/XmlParser.ypp" // location.cc:296
+#line 26 "rxml/XmlParser.ypp" // location.cc:296
 namespace rxml {
 #line 46 "rxml/location.hh" // location.cc:296
   /// Abstract a location.
@@ -186,7 +186,7 @@ namespace rxml {
     return ostr;
   }
 
-#line 4 "rxml/XmlParser.ypp" // location.cc:296
+#line 26 "rxml/XmlParser.ypp" // location.cc:296
 } // rxml
 #line 192 "rxml/location.hh" // location.cc:296
 #endif // !YY_YY_RXML_LOCATION_HH_INCLUDED

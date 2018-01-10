@@ -50,7 +50,7 @@
 #  endif
 # endif
 
-#line 4 "rxml/XmlParser.ypp" // location.cc:296
+#line 26 "rxml/XmlParser.ypp" // location.cc:296
 namespace rxml {
 #line 56 "rxml/position.hh" // location.cc:296
   /// Abstract a position.
@@ -174,7 +174,7 @@ namespace rxml {
     return ostr << pos.line << '.' << pos.column;
   }
 
-#line 4 "rxml/XmlParser.ypp" // location.cc:296
+#line 26 "rxml/XmlParser.ypp" // location.cc:296
 } // rxml
 #line 180 "rxml/position.hh" // location.cc:296
 #endif // !YY_YY_RXML_POSITION_HH_INCLUDED

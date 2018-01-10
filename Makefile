@@ -10,7 +10,7 @@ prefix   ?= /usr/local
  
 
 HEADERS    = $(wildcard rxml/*.h) $(wildcard rxml/*.hpp) $(wildcard rxml/*.hh)
-SOURCES    = $(wildcard rxml/*.cpp)
+SOURCES    = rxml/XmlParser.cpp rxml/XmlLexer.cpp $(wildcard rxml/*.cpp)
 TESTSRCS   = $(wildcard rxml-test/*.cpp)
 
 EXTRA_DIST = Makefile README.md rxml/XmlLexer.fpp rxml/XmlParser.ypp $(wildcard rxml-test/*.h)
@@ -44,8 +44,11 @@ rxml-test$(EXEEXT): $(patsubst %.cpp, .obj/%.o, $(TESTSRCS)) librxml$(LIBEXT)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ -o $@
  
 clean: 
-	rm -rf .obj librxml$(LIBEXT) librxml.a rxml-test$(EXEEXT)	
+	rm -rf .obj librxml$(LIBEXT) librxml.a rxml-test$(EXEEXT)
  
+distclean: clean
+	rm -rf rxml/XMLLexer.cpp rxml/XMLParser.cpp rxml/XMLParser.hpp rxml/XMLParser.output rxml/location.hh rxml/position.hh 
+
 dist:
 	mkdir rxml-$(VERSION)
 	cp --parents $(DIST_FILES) rxml-$(VERSION)
@@ -77,15 +80,15 @@ endif
 .obj/%.o : %.cpp
 	mkdir -p $(shell dirname $@)
 	$(CXX) $(CXXFLAGS) -MD -c $< -o $@	
-	
-rxml/XmlLexer.fpp: rxml/XmlParser.cpp						
-rxml/XmlLexer.cpp: rxml/XmlLexer.fpp
+
+%.cpp: %.fpp
 	$(FLEX) -o $@ $^
 
-rxml/XmlParser.hpp: rxml/XmlParser.ypp
-rxml/XmlParser.cpp: rxml/XmlParser.ypp
+%.cpp: %.ypp
 	$(BISON) --report=all -o $@ $^
- 
+
+rxml/XmlParser.hpp: rxml/XmlParser.cpp
+
 ifneq "$(MAKECMDGOALS)" "clean"
 -include $(patsubst %.cpp, .obj/%.d, $(SOURCES))
 -include $(patsubst %.cpp, .obj/%.d, $(TESTSRCS))

@@ -327,14 +327,14 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[58] =
+static const flex_int16_t yy_accept[55] =
     {   0,
         0,    0,    0,    0,   18,    3,    3,    4,   17,   11,
        12,   12,   17,   17,   17,   10,   13,   17,    7,    3,
         0,    5,    6,   11,   12,    0,    8,    0,    0,    9,
         0,   14,   15,    7,    0,    0,    8,    9,    0,    0,
         0,    0,    0,    0,    0,    1,    0,    0,    0,    0,
-        0,    0,    0,    0,    0,    2,    0
+        0,    0,    2,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -348,7 +348,7 @@ static const YY_CHAR yy_ec[256] =
        12,   13,   14,    1,   15,   16,   17,   18,   16,   16,
        16,   16,   16,   16,   16,   16,   16,   16,   16,   16,
        16,   16,   16,   19,   16,   16,   16,   16,   16,   16,
-       20,   21,   22,   23,   16,    1,   16,   16,   16,   16,
+       20,   21,   22,    1,   16,    1,   16,   16,   16,   16,
 
        16,   16,   16,   16,   16,   16,   16,   16,   16,   16,
        16,   16,   16,   16,   16,   16,   16,   16,   16,   16,
@@ -369,69 +369,67 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[24] =
+static const YY_CHAR yy_meta[23] =
     {   0,
         1,    1,    2,    2,    1,    1,    1,    3,    3,    1,
         4,    1,    1,    1,    3,    3,    3,    3,    3,    1,
-        1,    1,    1
+        1,    1
     } ;
 
-static const flex_int16_t yy_base[64] =
+static const flex_int16_t yy_base[62] =
     {   0,
-        0,    1,   12,    0,   97,    0,    0,   31,   98,   94,
-       98,   92,   31,   32,   81,   98,   98,   80,    0,    0,
-       30,   98,   98,   90,   98,   34,   98,   36,   37,   98,
-       39,   98,   98,    0,   83,   73,   41,   42,   81,   70,
-       79,   78,   70,   71,   64,   98,   61,   52,   38,   37,
-       34,   41,   29,   26,   30,   98,   98,   63,   67,   70,
-       74,    2,   78
+        0,    1,   12,    0,   97,    0,    0,   30,   98,   94,
+       98,   92,   30,   31,   81,   98,   98,   80,    0,    0,
+       29,   98,   98,   90,   98,   33,   98,   35,   36,   98,
+       38,   98,   98,    0,   83,   73,   40,   41,   81,   70,
+       79,   78,   60,   58,   41,   98,   43,   35,   31,   28,
+       25,   29,   98,   98,   62,   66,   69,   73,    2,   77,
+       81
     } ;
 
-static const flex_int16_t yy_def[64] =
+static const flex_int16_t yy_def[62] =
     {   0,
-       58,   58,   57,    3,   57,   59,   59,   57,   57,   57,
-       57,   57,   60,   61,   57,   57,   57,   57,   62,   59,
-       57,   57,   57,   57,   57,   60,   57,   60,   61,   57,
-       61,   57,   57,   62,   57,   57,   60,   61,   63,   57,
-       63,   63,   57,   63,   57,   57,   57,   57,   57,   57,
-       57,   57,   57,   57,   57,   57,    0,   57,   57,   57,
-       57,   57,   57
+       55,   55,   54,    3,   54,   56,   56,   54,   54,   54,
+       54,   54,   57,   58,   54,   54,   54,   54,   59,   56,
+       54,   54,   54,   54,   54,   57,   54,   57,   58,   54,
+       58,   54,   54,   59,   54,   54,   57,   58,   60,   54,
+       60,   60,   54,   60,   54,   54,   54,   54,   61,   61,
+       61,   61,   54,    0,   54,   54,   54,   54,   54,   54,
+       54
     } ;
 
-static const flex_int16_t yy_nxt[122] =
+static const flex_int16_t yy_nxt[121] =
     {   0,
-       57,   57,    7,    7,   34,   57,   57,   57,   57,   57,
+       54,   54,    7,    7,   34,   54,   54,   54,   54,   54,
         8,    8,    9,   10,   11,   12,    9,   13,   14,    9,
         9,   15,    9,   16,   17,   18,   19,   19,   19,   19,
-       19,    9,    9,    9,    9,   21,   27,   35,   30,   27,
-       22,   37,   56,   30,   23,   38,   27,   55,   30,   36,
-       54,   28,   31,   53,   28,   52,   28,   31,   51,   31,
-       50,   28,   31,    6,    6,    6,    6,   20,   20,   20,
-       26,   49,   26,   26,   29,   48,   29,   29,   41,   41,
-       41,   41,   47,   46,   45,   44,   42,   43,   42,   40,
-       39,   24,   33,   32,   25,   24,   57,    5,   57,   57,
+       19,    9,    9,    9,   21,   27,   35,   30,   27,   22,
+       37,   53,   30,   23,   38,   27,   52,   30,   36,   51,
+       28,   31,   51,   28,   49,   28,   31,   48,   31,   47,
+       28,   31,    6,    6,    6,    6,   20,   20,   20,   26,
+       46,   26,   26,   29,   45,   29,   29,   41,   41,   41,
+       41,   50,   50,   50,   50,   44,   42,   43,   42,   40,
+       39,   24,   33,   32,   25,   24,   54,    5,   54,   54,
 
-       57,   57,   57,   57,   57,   57,   57,   57,   57,   57,
-       57,   57,   57,   57,   57,   57,   57,   57,   57,   57,
-       57
+       54,   54,   54,   54,   54,   54,   54,   54,   54,   54,
+       54,   54,   54,   54,   54,   54,   54,   54,   54,   54
     } ;
 
-static const flex_int16_t yy_chk[122] =
+static const flex_int16_t yy_chk[121] =
     {   0,
-        0,    0,    1,    2,   62,    0,    0,    0,    0,    0,
+        0,    0,    1,    2,   59,    0,    0,    0,    0,    0,
         1,    2,    3,    3,    3,    3,    3,    3,    3,    3,
         3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
-        3,    3,    3,    3,    3,    8,   13,   21,   14,   26,
-        8,   28,   55,   29,    8,   31,   37,   54,   38,   21,
-       53,   13,   14,   52,   26,   51,   28,   29,   50,   31,
-       49,   37,   38,   58,   58,   58,   58,   59,   59,   59,
-       60,   48,   60,   60,   61,   47,   61,   61,   63,   63,
-       63,   63,   45,   44,   43,   42,   41,   40,   39,   36,
-       35,   24,   18,   15,   12,   10,    5,   57,   57,   57,
+        3,    3,    3,    3,    8,   13,   21,   14,   26,    8,
+       28,   52,   29,    8,   31,   37,   51,   38,   21,   50,
+       13,   14,   49,   26,   48,   28,   29,   47,   31,   45,
+       37,   38,   55,   55,   55,   55,   56,   56,   56,   57,
+       44,   57,   57,   58,   43,   58,   58,   60,   60,   60,
+       60,   61,   61,   61,   61,   42,   41,   40,   39,   36,
+       35,   24,   18,   15,   12,   10,    5,   54,   54,   54,
 
-       57,   57,   57,   57,   57,   57,   57,   57,   57,   57,
-       57,   57,   57,   57,   57,   57,   57,   57,   57,   57,
-       57
+       54,   54,   54,   54,   54,   54,   54,   54,   54,   54,
+       54,   54,   54,   54,   54,   54,   54,   54,   54,   54
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -442,7 +440,29 @@ static const flex_int16_t yy_chk[122] =
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 #line 1 "rxml/XmlLexer.fpp"
-#line 8 "rxml/XmlLexer.fpp"
+/*
+// rxml - rioki's xml lbrary
+// Copyright 2016-2018 Sean "rioki" Farrell <sean.farrell@rioki.org>
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+*/
+#line 30 "rxml/XmlLexer.fpp"
 #define _SKIP_YYFLEXLEXER_
 #include "XmlLexer.h"
 
@@ -457,9 +477,9 @@ static const flex_int16_t yy_chk[122] =
 int count_lines(const std::string& buff);
 bool is_ws(const std::string& buff);
 
-#line 460 "rxml/XmlLexer.cpp"
+#line 480 "rxml/XmlLexer.cpp"
 
-#line 462 "rxml/XmlLexer.cpp"
+#line 482 "rxml/XmlLexer.cpp"
 
 #define INITIAL 0
 #define ELEMENT 1
@@ -592,15 +612,15 @@ YY_DECL
 		}
 
 	{
-#line 36 "rxml/XmlLexer.fpp"
+#line 58 "rxml/XmlLexer.fpp"
 
 
 
-#line 40 "rxml/XmlLexer.fpp"
+#line 62 "rxml/XmlLexer.fpp"
 yylloc->step();
 
 
-#line 603 "rxml/XmlLexer.cpp"
+#line 623 "rxml/XmlLexer.cpp"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -627,7 +647,7 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 58 )
+				if ( yy_current_state >= 55 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -660,7 +680,7 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 43 "rxml/XmlLexer.fpp"
+#line 65 "rxml/XmlLexer.fpp"
 {
                             std::string t = std::string(YYText());
                             t = t.substr(4,t.length() - 7);
@@ -673,10 +693,14 @@ YY_RULE_SETUP
                         }
 	YY_BREAK
 case 2:
+/* rule 2 can match eol */
 YY_RULE_SETUP
-#line 54 "rxml/XmlLexer.fpp"
+#line 76 "rxml/XmlLexer.fpp"
 {
-                            yylval->string = new std::string(YYText());
+                            std::string t = std::string(YYText());
+                            t = t.substr(9,t.length() - 12);
+
+                            yylval->string = new std::string(t);
                             int ln = count_lines(*yylval->string);
                             yylloc->lines(ln); 
                             yylloc->step();
@@ -686,7 +710,7 @@ YY_RULE_SETUP
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 62 "rxml/XmlLexer.fpp"
+#line 87 "rxml/XmlLexer.fpp"
 {
                             yylval->string = new std::string(YYText());
                             int ln = count_lines(*yylval->string);
@@ -704,7 +728,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 77 "rxml/XmlLexer.fpp"
+#line 102 "rxml/XmlLexer.fpp"
 {
                             BEGIN(ELEMENT);
                             return token::LT;
@@ -712,7 +736,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 81 "rxml/XmlLexer.fpp"
+#line 106 "rxml/XmlLexer.fpp"
 {
                             BEGIN(ELEMENT);
                             return token::LTS;
@@ -720,7 +744,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 86 "rxml/XmlLexer.fpp"
+#line 111 "rxml/XmlLexer.fpp"
 { 
                             BEGIN(ELEMENT);
                             return token::PIO;
@@ -728,7 +752,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 91 "rxml/XmlLexer.fpp"
+#line 116 "rxml/XmlLexer.fpp"
 {
                             yylval->string = new std::string(YYText());
                             return token::NAME;  
@@ -736,7 +760,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 96 "rxml/XmlLexer.fpp"
+#line 121 "rxml/XmlLexer.fpp"
 {
                             size_t l = strlen(YYText());
                             yylval->string = new std::string(YYText()+1, l - 2);
@@ -745,7 +769,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 102 "rxml/XmlLexer.fpp"
+#line 127 "rxml/XmlLexer.fpp"
 {
                             size_t l = strlen(YYText());
                             yylval->string = new std::string(YYText()+1, l - 2);
@@ -754,18 +778,18 @@ YY_RULE_SETUP
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 108 "rxml/XmlLexer.fpp"
+#line 133 "rxml/XmlLexer.fpp"
 return token::EQUAL;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 110 "rxml/XmlLexer.fpp"
+#line 135 "rxml/XmlLexer.fpp"
 return token::WS;
 	YY_BREAK
 case 12:
 /* rule 12 can match eol */
 YY_RULE_SETUP
-#line 112 "rxml/XmlLexer.fpp"
+#line 137 "rxml/XmlLexer.fpp"
 {
                             yylloc->lines(1); 
                             yylloc->step();
@@ -774,7 +798,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 118 "rxml/XmlLexer.fpp"
+#line 143 "rxml/XmlLexer.fpp"
 {
                             BEGIN(INITIAL);
                             return token::GT;
@@ -782,7 +806,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 123 "rxml/XmlLexer.fpp"
+#line 148 "rxml/XmlLexer.fpp"
 {
                             BEGIN(INITIAL);
                             return token::GTS;
@@ -790,7 +814,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 128 "rxml/XmlLexer.fpp"
+#line 153 "rxml/XmlLexer.fpp"
 {
                             BEGIN(INITIAL);
                             return token::PIE;
@@ -798,15 +822,15 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 133 "rxml/XmlLexer.fpp"
+#line 158 "rxml/XmlLexer.fpp"
 return token::ERROR;
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 135 "rxml/XmlLexer.fpp"
+#line 160 "rxml/XmlLexer.fpp"
 ECHO;
 	YY_BREAK
-#line 809 "rxml/XmlLexer.cpp"
+#line 833 "rxml/XmlLexer.cpp"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(ELEMENT):
 	yyterminate();
@@ -1224,7 +1248,7 @@ int yyFlexLexer::yy_get_next_buffer()
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 58 )
+			if ( yy_current_state >= 55 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1252,11 +1276,11 @@ int yyFlexLexer::yy_get_next_buffer()
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 58 )
+		if ( yy_current_state >= 55 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 57);
+	yy_is_jam = (yy_current_state == 54);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1770,7 +1794,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 135 "rxml/XmlLexer.fpp"
+#line 160 "rxml/XmlLexer.fpp"
 
 
 int count_lines(const std::string& buff)

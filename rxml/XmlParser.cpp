@@ -46,7 +46,7 @@
 #include "XmlParser.hpp"
 
 // User implementation prologue.
-#line 69 "rxml/XmlParser.ypp" // lalr1.cc:412
+#line 91 "rxml/XmlParser.ypp" // lalr1.cc:412
 
 int yylex(rxml::parser::semantic_type* yylval, rxml::parser::location_type* yylloc, XmlLexer& lex);
 
@@ -143,7 +143,7 @@ std::shared_ptr<Type> wrap(Type* type)
 #define YYERROR         goto yyerrorlab
 #define YYRECOVERING()  (!!yyerrstatus_)
 
-#line 4 "rxml/XmlParser.ypp" // lalr1.cc:479
+#line 26 "rxml/XmlParser.ypp" // lalr1.cc:479
 namespace rxml {
 #line 149 "rxml/XmlParser.cpp" // lalr1.cc:479
 
@@ -521,7 +521,7 @@ namespace rxml {
 
 
     // User initialization code.
-    #line 28 "rxml/XmlParser.ypp" // lalr1.cc:741
+    #line 50 "rxml/XmlParser.ypp" // lalr1.cc:741
 {
     // Initialize the initial location.
     yyla.location.begin.line = yyla.location.end.line = 1;
@@ -636,7 +636,7 @@ namespace rxml {
           switch (yyn)
             {
   case 8:
-#line 95 "rxml/XmlParser.ypp" // lalr1.cc:859
+#line 117 "rxml/XmlParser.ypp" // lalr1.cc:859
     {
     // TODO     
     delete (yystack_[4].value.string);
@@ -646,7 +646,7 @@ namespace rxml {
     break;
 
   case 11:
-#line 105 "rxml/XmlParser.ypp" // lalr1.cc:859
+#line 127 "rxml/XmlParser.ypp" // lalr1.cc:859
     {
     if (sax.start_element_cb)
     {
@@ -663,7 +663,7 @@ namespace rxml {
     break;
 
   case 12:
-#line 119 "rxml/XmlParser.ypp" // lalr1.cc:859
+#line 141 "rxml/XmlParser.ypp" // lalr1.cc:859
     {
     if (sax.start_element_cb)
     {
@@ -676,7 +676,7 @@ namespace rxml {
     break;
 
   case 13:
-#line 129 "rxml/XmlParser.ypp" // lalr1.cc:859
+#line 151 "rxml/XmlParser.ypp" // lalr1.cc:859
     {
     if (sax.end_element_cb)
     {
@@ -688,7 +688,7 @@ namespace rxml {
     break;
 
   case 14:
-#line 138 "rxml/XmlParser.ypp" // lalr1.cc:859
+#line 160 "rxml/XmlParser.ypp" // lalr1.cc:859
     {
     (yylhs.value.string_map) = (yystack_[1].value.string_map);
   }
@@ -696,7 +696,7 @@ namespace rxml {
     break;
 
   case 15:
-#line 141 "rxml/XmlParser.ypp" // lalr1.cc:859
+#line 163 "rxml/XmlParser.ypp" // lalr1.cc:859
     {
     (yylhs.value.string_map) = new std::map<std::string, std::string>();
   }
@@ -704,7 +704,7 @@ namespace rxml {
     break;
 
   case 16:
-#line 146 "rxml/XmlParser.ypp" // lalr1.cc:859
+#line 168 "rxml/XmlParser.ypp" // lalr1.cc:859
     {
     (yylhs.value.string_map) = (yystack_[2].value.string_map);
     // TODO fail if the attribute is double defined
@@ -715,7 +715,7 @@ namespace rxml {
     break;
 
   case 17:
-#line 152 "rxml/XmlParser.ypp" // lalr1.cc:859
+#line 174 "rxml/XmlParser.ypp" // lalr1.cc:859
     {
     (yylhs.value.string_map) = new std::map<std::string, std::string>();
     (yylhs.value.string_map)->insert(*(yystack_[0].value.string_pair));
@@ -725,7 +725,7 @@ namespace rxml {
     break;
 
   case 18:
-#line 159 "rxml/XmlParser.ypp" // lalr1.cc:859
+#line 181 "rxml/XmlParser.ypp" // lalr1.cc:859
     {
     (yylhs.value.string_pair) = new std::pair<std::string, std::string>(*(yystack_[2].value.string), *(yystack_[0].value.string));
     delete (yystack_[2].value.string);
@@ -735,7 +735,7 @@ namespace rxml {
     break;
 
   case 26:
-#line 177 "rxml/XmlParser.ypp" // lalr1.cc:859
+#line 199 "rxml/XmlParser.ypp" // lalr1.cc:859
     {
     if (sax.text_cb)
     {
@@ -747,7 +747,7 @@ namespace rxml {
     break;
 
   case 27:
-#line 184 "rxml/XmlParser.ypp" // lalr1.cc:859
+#line 206 "rxml/XmlParser.ypp" // lalr1.cc:859
     {
     if (sax.text_cb)
     {
@@ -759,7 +759,7 @@ namespace rxml {
     break;
 
   case 28:
-#line 193 "rxml/XmlParser.ypp" // lalr1.cc:859
+#line 215 "rxml/XmlParser.ypp" // lalr1.cc:859
     {
     if (sax.cdata_cb)
     {
@@ -771,7 +771,7 @@ namespace rxml {
     break;
 
   case 29:
-#line 202 "rxml/XmlParser.ypp" // lalr1.cc:859
+#line 224 "rxml/XmlParser.ypp" // lalr1.cc:859
     {
     if (sax.cdata_cb)
     {
@@ -1147,10 +1147,10 @@ namespace rxml {
   const unsigned char
   parser::yyrline_[] =
   {
-       0,    85,    85,    88,    88,    92,    92,    92,    95,   102,
-     102,   105,   119,   129,   138,   141,   146,   152,   159,   166,
-     166,   170,   171,   172,   173,   174,   177,   184,   193,   202,
-     211,   211,   214,   214
+       0,   107,   107,   110,   110,   114,   114,   114,   117,   124,
+     124,   127,   141,   151,   160,   163,   168,   174,   181,   188,
+     188,   192,   193,   194,   195,   196,   199,   206,   215,   224,
+     233,   233,   236,   236
   };
 
   // Print the state stack on the debug stream.
@@ -1231,10 +1231,10 @@ namespace rxml {
       return undef_token_;
   }
 
-#line 4 "rxml/XmlParser.ypp" // lalr1.cc:1167
+#line 26 "rxml/XmlParser.ypp" // lalr1.cc:1167
 } // rxml
 #line 1237 "rxml/XmlParser.cpp" // lalr1.cc:1167
-#line 216 "rxml/XmlParser.ypp" // lalr1.cc:1168
+#line 238 "rxml/XmlParser.ypp" // lalr1.cc:1168
 
 
 #include <iostream>

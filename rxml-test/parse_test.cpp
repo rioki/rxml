@@ -126,14 +126,14 @@ SUITE(document)
         CHECK_EQUAL("It's Me", xbutton->get_attribute("text"));                
     }
     
-    TEST(parse_cdata)
+    TEST(cdata0)
     {
-        /*rxml::Document doc;
+        rxml::Document doc;
         
         std::string xml = 
           "<?xml version=\"1.0\"?>\n"
           "<stuff>\n"
-          "  <![CDATA[<yolo swag>]]>\n"          
+          "  <![CDATA[yolo swag]]>\n"          
           "</stuff>\n";
         
         std::stringstream buff(xml);
@@ -143,12 +143,37 @@ SUITE(document)
         CHECK((bool)xstuff);
 
         auto data = xstuff->get_children();
-        CHECK_EQUAL(3, data.size());*/
+        CHECK_EQUAL(3, data.size());
         
-        //auto cdata = std::dynamic_pointer_cast<rxml::CData>(data[1]);
-        //CHECK((bool)cdata);
-        //CHECK_EQUAL("<yolo swag>", cdata->get_value());
+        auto cdata = std::dynamic_pointer_cast<rxml::CData>(data[1]);
+        CHECK((bool)cdata);
+        CHECK_EQUAL("yolo swag", cdata->get_value());
     }
+
+    TEST(cdata1)
+    {
+        rxml::Document doc;
+        
+        std::string xml = 
+          "<?xml version=\"1.0\"?>\n"
+          "<stuff>\n"
+          "  <![CDATA[<yolo [] swag>]]>\n"          
+          "</stuff>\n";
+        
+        std::stringstream buff(xml);
+        buff >> doc;
+
+        auto xstuff = doc.get_root_element();  
+        CHECK((bool)xstuff);
+
+        auto data = xstuff->get_children();
+        CHECK_EQUAL(3, data.size());
+        
+        auto cdata = std::dynamic_pointer_cast<rxml::CData>(data[1]);
+        CHECK((bool)cdata);
+        CHECK_EQUAL("<yolo [] swag>", cdata->get_value());
+    }
+
 
     TEST(coments0)
     {
@@ -254,7 +279,7 @@ SUITE(document)
         buff >> doc;
 
         auto xscreen   = doc.get_root_element();  
-        CHECK(xscreen);
+        CHECK((bool)xscreen);
 
         // Note:
         // Currently there is no nice place to put comments outside of the DOM, 

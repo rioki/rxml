@@ -40,7 +40,7 @@
 #ifndef YY_YY_RXML_XMLPARSER_HPP_INCLUDED
 # define YY_YY_RXML_XMLPARSER_HPP_INCLUDED
 // //                    "%code requires" blocks.
-#line 11 "rxml/XmlParser.ypp" // lalr1.cc:377
+#line 33 "rxml/XmlParser.ypp" // lalr1.cc:377
 
 
 class XmlLexer;
@@ -120,7 +120,7 @@ class XmlLexer;
 # define YYDEBUG 0
 #endif
 
-#line 4 "rxml/XmlParser.ypp" // lalr1.cc:377
+#line 26 "rxml/XmlParser.ypp" // lalr1.cc:377
 namespace rxml {
 #line 126 "rxml/XmlParser.hpp" // lalr1.cc:377
 
@@ -136,7 +136,7 @@ namespace rxml {
     /// Symbol semantic values.
     union semantic_type
     {
-    #line 36 "rxml/XmlParser.ypp" // lalr1.cc:377
+    #line 58 "rxml/XmlParser.ypp" // lalr1.cc:377
     
     std::string*                         string;
     std::map<std::string, std::string>*  string_map;
@@ -502,7 +502,7 @@ namespace rxml {
   };
 
 
-#line 4 "rxml/XmlParser.ypp" // lalr1.cc:377
+#line 26 "rxml/XmlParser.ypp" // lalr1.cc:377
 } // rxml
 #line 508 "rxml/XmlParser.hpp" // lalr1.cc:377
 

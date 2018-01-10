@@ -40,7 +40,7 @@
 
 # include <vector>
 
-#line 4 "rxml/XmlParser.ypp" // stack.hh:132
+#line 26 "rxml/XmlParser.ypp" // stack.hh:132
 namespace rxml {
 #line 46 "rxml/stack.hh" // stack.hh:132
   template <class T, class S = std::vector<T> >
@@ -150,7 +150,7 @@ namespace rxml {
     unsigned int range_;
   };
 
-#line 4 "rxml/XmlParser.ypp" // stack.hh:132
+#line 26 "rxml/XmlParser.ypp" // stack.hh:132
 } // rxml
 #line 156 "rxml/stack.hh" // stack.hh:132
 

@@ -51,7 +51,7 @@ string1         \"([^\"\n\r]+|\\\")*\"
 string2         \'([^\'\n\r]+|\\\')*\'
 number          [-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?
 name            [a-zA-Z_][a-zA-Z0-9_\-\.]*
-cdata           <\!\[CDATA\[^(\]\]>)\]\]> 
+cdata           "<![CDATA["([^\]]|\][^\]]|\]\][^>])*"]]>"
 comment         <!--([^-]|(-[^-])|(--[^>]))*-->
 text            [^<]+
 
@@ -73,7 +73,10 @@ yylloc->step();
                         }
 
 {cdata}                 {
-                            yylval->string = new std::string(YYText());
+                            std::string t = std::string(YYText());
+                            t = t.substr(9,t.length() - 12);
+
+                            yylval->string = new std::string(t);
                             int ln = count_lines(*yylval->string);
                             yylloc->lines(ln); 
                             yylloc->step();
