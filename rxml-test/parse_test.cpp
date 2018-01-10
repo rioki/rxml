@@ -1,6 +1,6 @@
 // 
 // rxml - rioki's xml lbrary
-// Copyright 2016-2017 Sean "rioki" Farrell <sean.farrell@rioki.org>
+// Copyright 2016-2018 Sean "rioki" Farrell <sean.farrell@rioki.org>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -106,7 +106,7 @@ SUITE(document)
         
         std::string xml = 
           "<?xml version=\"1.0\"?>\n"
-          "<screen>"
+          "<screen>\n"
           "  <button x=\"12\" y='13' text=\"It's Me\"/>\n"
           "</screen>\n";
         
@@ -148,5 +148,116 @@ SUITE(document)
         //auto cdata = std::dynamic_pointer_cast<rxml::CData>(data[1]);
         //CHECK((bool)cdata);
         //CHECK_EQUAL("<yolo swag>", cdata->get_value());
+    }
+
+    TEST(coments0)
+    {
+        rxml::Document doc;
+        
+        std::string xml = 
+          "<?xml version=\"1.0\"?>\n"
+          "<screen>\n"
+          "  <!-- Hello World -->\n" 
+          "</screen>\n";
+        
+        std::stringstream buff(xml);
+        buff >> doc;
+
+        auto xscreen   = doc.get_root_element();  
+        auto xchildren = xscreen->get_children();
+        std::string comment;
+        
+        for (auto xchild : xchildren)
+        {
+            auto xcomment = std::dynamic_pointer_cast<rxml::Comment>(xchild);
+            if (xcomment)
+            {
+                comment = xcomment->get_value();
+            }
+        }
+
+        CHECK_EQUAL(" Hello World ", comment);
+    }
+
+    TEST(coments1)
+    {
+        rxml::Document doc;
+        
+        std::string xml = 
+          "<?xml version=\"1.0\"?>\n"
+          "<screen>\n"
+          "  <!--<button x=\"12\" y='13' text=\"It's Me\"/>-->\n"
+          "</screen>\n";
+        
+        std::stringstream buff(xml);
+        buff >> doc;
+
+        auto xscreen   = doc.get_root_element();  
+        auto xchildren = xscreen->get_children();
+        std::string comment;
+        
+        for (auto xchild : xchildren)
+        {
+            auto xcomment = std::dynamic_pointer_cast<rxml::Comment>(xchild);
+            if (xcomment)
+            {
+                comment = xcomment->get_value();
+            }
+        }
+
+        CHECK_EQUAL("<button x=\"12\" y='13' text=\"It's Me\"/>", comment);
+
+        auto xbutton = xscreen->find_element("button");
+        CHECK(!xbutton);        
+    }
+
+    TEST(coments2)
+    {
+        rxml::Document doc;
+        
+        std::string xml = 
+          "<?xml version=\"1.0\"?>\n"
+          "<screen>\n"
+          "  <!-- < - -- > -->\n" 
+          "</screen>\n";
+        
+        std::stringstream buff(xml);
+        buff >> doc;
+
+        auto xscreen   = doc.get_root_element();  
+        auto xchildren = xscreen->get_children();
+        std::string comment;
+        
+        for (auto xchild : xchildren)
+        {
+            auto xcomment = std::dynamic_pointer_cast<rxml::Comment>(xchild);
+            if (xcomment)
+            {
+                comment = xcomment->get_value();
+            }
+        }
+
+        CHECK_EQUAL(" < - -- > ", comment);
+    }
+
+    TEST(coments3)
+    {
+        rxml::Document doc;
+        
+        std::string xml = 
+          "<!-- Copyright 2018 Your Mom -->"
+          "<?xml version=\"1.0\"?>\n"
+          "<screen>\n"
+          "</screen>\n";
+        
+        std::stringstream buff(xml);
+        buff >> doc;
+
+        auto xscreen   = doc.get_root_element();  
+        CHECK(xscreen);
+
+        // Note:
+        // Currently there is no nice place to put comments outside of the DOM, 
+        // thus it is ok to just discard it.
     }
 }

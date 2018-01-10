@@ -1,6 +1,6 @@
 // 
 // rxml - rioki's xml lbrary
-// Copyright 2016-2017 Sean "rioki" Farrell <sean.farrell@rioki.org>
+// Copyright 2016-2018 Sean "rioki" Farrell <sean.farrell@rioki.org>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -110,6 +110,11 @@ namespace rxml
         void set_cdata(const std::string& text);
         
         void add_cdata(const std::string& text);
+
+        /**
+         * Add a comment
+         **/
+        void add_comment(const std::string& text);
        
         /**       
          * Add a element.

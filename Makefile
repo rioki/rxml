@@ -38,7 +38,7 @@ librxml$(LIBEXT): $(patsubst %.cpp, .obj/%.o, $(SOURCES))
 endif 
  
 check: rxml-test$(EXEEXT)	
-	cd rxml-test && LD_LIBRARY_PATH=.. ../rxml-test$(EXEEXT)
+	./rxml-test$(EXEEXT)
  
 rxml-test$(EXEEXT): $(patsubst %.cpp, .obj/%.o, $(TESTSRCS)) librxml$(LIBEXT)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ -o $@

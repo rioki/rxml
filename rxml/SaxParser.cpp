@@ -1,6 +1,6 @@
 // 
 // rxml - rioki's xml lbrary
-// Copyright 2016-2017 Sean "rioki" Farrell <sean.farrell@rioki.org>
+// Copyright 2016-2018 Sean "rioki" Farrell <sean.farrell@rioki.org>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -53,6 +53,11 @@ namespace rxml
     void SaxParser::on_cdata(std::function<void (const std::string&)> cb)
     {
         cdata_cb = cb;
+    }
+
+    void SaxParser::on_comment(std::function<void (const std::string&)> cb)
+    {
+        comment_cb = cb;        
     }
 
     void SaxParser::parse()

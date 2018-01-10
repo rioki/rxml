@@ -1,6 +1,6 @@
 // 
 // rxml - rioki's xml lbrary
-// Copyright 2016-2017 Sean "rioki" Farrell <sean.farrell@rioki.org>
+// Copyright 2016-2018 Sean "rioki" Farrell <sean.farrell@rioki.org>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,6 +27,7 @@
 
 #include "Text.h"
 #include "CData.h"
+#include "Comment.h"
 
 namespace rxml
 {
@@ -144,7 +145,11 @@ namespace rxml
         children.push_back(std::make_shared<CData>(this, text));
     }
     
-    
+    void Element::add_comment(const std::string& text)
+    {
+        children.push_back(std::make_shared<Comment>(this, text));
+    }
+
     std::shared_ptr<Element> Element::add_element(const std::string& name)
     {
         auto element = std::make_shared<Element>(this, name);

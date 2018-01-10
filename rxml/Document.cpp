@@ -1,6 +1,6 @@
 // 
 // rxml - rioki's xml lbrary
-// Copyright 2016-2017 Sean "rioki" Farrell <sean.farrell@rioki.org>
+// Copyright 2016-2018 Sean "rioki" Farrell <sean.farrell@rioki.org>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -151,7 +151,7 @@ namespace rxml
         parser.on_text([&] (const std::string& text) {
             if (elements.empty())
             {
-                throw std::runtime_error("stey text");
+                throw std::runtime_error("strey text");
             }
             elements.top()->add_text(text);
         });
@@ -159,9 +159,20 @@ namespace rxml
         parser.on_cdata([&] (const std::string& text) {
             if (elements.empty())
             {
-                throw std::runtime_error("stey cdata");
+                throw std::runtime_error("strey cdata");
             }
             elements.top()->add_cdata(text);
+        });
+
+        parser.on_comment([&] (const std::string& text) {
+            if (elements.empty())
+            {
+                // This is allowed, but there is no nice place to put it...
+            }
+            else
+            {
+                elements.top()->add_comment(text);
+            }            
         });
         
         parser.parse();
