@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CData.cpp" />
+    <ClCompile Include="Comment.cpp" />
     <ClCompile Include="Content.cpp" />
     <ClCompile Include="Document.cpp" />
     <ClCompile Include="Element.cpp" />
@@ -162,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CData.h" />
+    <ClInclude Include="Comment.h" />
     <ClInclude Include="Content.h" />
     <ClInclude Include="defines.h" />
     <ClInclude Include="Document.h" />

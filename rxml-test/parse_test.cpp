@@ -68,7 +68,7 @@ SUITE(document)
         
         std::string xml = 
           "<?xml version=\"1.0\" ?>\n"
-          "<message >\n"
+          "<message>\n"
           "  <from>rioki</from>\n"
           "  <to>World</to>\n"
           "  <body>Yo I reinvented the wheel.</body>\n"

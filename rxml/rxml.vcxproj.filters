@@ -21,6 +21,9 @@
     <ClCompile Include="CData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Comment.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Content.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -63,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Comment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Content.h">
