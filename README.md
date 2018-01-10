@@ -7,7 +7,7 @@ rxml is an XML parser that implements the sensible XML subset.
 
 Assume you have the following piece of XML:
 
-    <?xml version=\"1.0\" ?>
+    <?xml version="1.0" ?>
     <message from="rioki" to="World">      
       <body>Yo! I reinvented the wheel.</body>
     </message>
